@@ -1,0 +1,36 @@
+﻿<Window x:Class="ProjectWpf.Snack.SnackGame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectWpf.Snack"
+        mc:Ignorable="d"
+        Title="SnackGame" Height="450" Width="800">
+    <Grid Background="#F2F2F2">
+        <!-- Header Section -->
+        <Border Background="#2A9D8F" Height="60" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Snack Game" FontSize="24" FontWeight="Bold" Foreground="Black" Margin="10"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0">
+            <TextBlock Text="Score: " FontSize="16" Foreground="Black" Margin="10"/>
+            <TextBlock x:Name="ScoreText" Text="0" FontSize="16" Foreground="black" Margin="10"/>
+        </StackPanel>
+        <!-- Main Content -->
+        <Viewbox Grid.Row="1" Stretch="Uniform" Margin="20">
+            <Grid>
+                <Border BorderBrush="#2A9D8F" BorderThickness="2" Background="White">
+                    <UniformGrid x:Name="GameGrid" Width="400" Height="400" />
+                </Border>
+                <Border x:Name="GameOverOverlay" Background="#80000000" Visibility="Collapsed">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Game Over" FontSize="36" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                        <Button x:Name="ResetButton" Content="Reset" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="ResetButton_Click" Cursor="Hand"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Viewbox>
+        <!-- Start Button -->
+        <Button x:Name="StartButton" Content="Start" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="StartButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20" Cursor="Hand"/>
+    </Grid>
+</Window>
