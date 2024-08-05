@@ -65,7 +65,7 @@
         </Border>
 
         <!-- Game Over Overlay -->
-        <Border x:Name="GameOverOverlay" Background="#80000000" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20">
+        <Border x:Name="GameOverOverlay" Background="#80000000" Visibility="Collapsed" Padding="20">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock x:Name="GameOverMessage" Text="Game Over" FontSize="36" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button Content="Play Again" FontSize="24" Width="130" Height="50" Margin="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" Click="PlayAgainButton_Click" BorderThickness="1"/>

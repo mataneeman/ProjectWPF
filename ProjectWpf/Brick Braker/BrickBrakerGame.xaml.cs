@@ -37,17 +37,17 @@ namespace ProjectWpf.Brick_Braker
 
             _ball = new Ellipse
             {
-                Width = 20,
-                Height = 20,
+                Width = 15,
+                Height = 15,
                 Fill = Brushes.Red
             };
-            ResetBallPosition(); // Set the initial position of the ball
 
             _paddle = new Paddle
             {
-                Width = 100,
-                Height = 20
+                Width = 90, 
+                Height = 13 
             };
+
             Canvas.SetLeft(_paddle, 150);
             Canvas.SetTop(_paddle, 360);
 
@@ -66,6 +66,8 @@ namespace ProjectWpf.Brick_Braker
 
             _viewModel.Score = 0;
             UpdateLevelDisplay();
+
+            GameCanvas.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(ResetBallPosition));
         }
 
         private void UpdateScore(int newScore)
@@ -173,7 +175,6 @@ namespace ProjectWpf.Brick_Braker
             Brush[] colors = { Brushes.Purple, Brushes.Goldenrod, Brushes.Blue };
             Random random = new Random();
 
-            // Remove previous bricks from the canvas and list
             foreach (var brick in _bricks.ToList())
             {
                 GameCanvas.Children.Remove(brick);
@@ -198,18 +199,11 @@ namespace ProjectWpf.Brick_Braker
                 }
             }
 
-            // Add new bricks to the canvas
             foreach (var brick in _bricks)
             {
                 GameCanvas.Children.Add(brick);
             }
 
-            double ballSize = Math.Max(10, 20 - _currentLevel);
-            if (_ball != null)
-            {
-                _ball.Width = ballSize;
-                _ball.Height = ballSize;
-            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -294,7 +288,7 @@ namespace ProjectWpf.Brick_Braker
                 {
                     _currentLevel++;
                     CreateBricks();
-                    ResetBallPosition(); // Reset the ball position when level changes
+                    ResetBallPosition(); 
                     UpdateLevelDisplay();
                     StartButton.Visibility = Visibility.Visible;
                     StartButton.Content = "Start Next Level";
@@ -318,11 +312,16 @@ namespace ProjectWpf.Brick_Braker
         {
             if (_ball != null)
             {
+                GameCanvas.UpdateLayout();
+
                 double canvasWidth = GameCanvas.ActualWidth;
                 double canvasHeight = GameCanvas.ActualHeight;
 
-                Canvas.SetLeft(_ball, (canvasWidth - _ball.Width) / 2);
-                Canvas.SetTop(_ball, (canvasHeight - _ball.Height) / 2);
+                double ballLeft = (canvasWidth - _ball.Width) / 2;
+                double ballTop = (canvasHeight - _ball.Height) / 2;
+
+                Canvas.SetLeft(_ball, ballLeft);
+                Canvas.SetTop(_ball, ballTop);
             }
         }
     }

@@ -13,10 +13,9 @@ namespace ProjectWpf.Brick_Braker
         {
             _rectangle = new Rectangle
             {
-                Width = 100,
-                Height = 20,
-                Fill = (Brush?)new BrushConverter().ConvertFrom("#2A9D8F"), 
-                Stroke = Brushes.Black, 
+                Width = 90,
+                Height = 13,
+                Fill = Brushes.Black, 
                 StrokeThickness = 1 
             };
 

@@ -15,8 +15,8 @@ namespace ProjectWpf.Brick_Braker
         {
             _ellipse = new Ellipse
             {
-                Width = 20,
-                Height = 20,
+                Width = 15,
+                Height = 15,
 
             };
 
