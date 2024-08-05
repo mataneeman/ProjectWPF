@@ -1,40 +1,48 @@
-﻿<Window x:Class="ProjectWpf.User_Management.AddUser"
+﻿<Window x:Class="ProjectWpf.User_Management.EditUser"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:ProjectWpf.User_Management"
-        Title="Add User" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight">
+        Title="Edit User" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight">
     <Grid>
         <StackPanel Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <!-- Header -->
             <Border Background="#2A9D8F" Height="30" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1">
-                <TextBlock Text="Add New User" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="Edit User" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
+
+            <!-- Name -->
             <StackPanel Orientation="Horizontal" Margin="0,5">
                 <TextBlock Text="Name:" Margin="0,0,10,0"/>
-                <TextBox x:Name="txtName" Width="220"/>
+                <TextBox x:Name="NameTextBox" Width="220"/>
             </StackPanel>
 
+            <!-- Start Date -->
             <StackPanel Orientation="Horizontal" Margin="0,5">
                 <TextBlock Text="Start Date:" Margin="0,0,10,0"/>
-                <DatePicker x:Name="dpStartDate" Width="200"/>
+                <DatePicker x:Name="StartDatePicker" Width="200"/>
             </StackPanel>
 
+            <!-- Email -->
             <StackPanel Orientation="Horizontal" Margin="0,5">
                 <TextBlock Text="Email:" Margin="0,0,10,0"/>
-                <TextBox x:Name="txtEmail" Width="225"/>
+                <TextBox x:Name="EmailTextBox" Width="225"/>
             </StackPanel>
 
+            <!-- Role -->
             <StackPanel Orientation="Horizontal" Margin="0,5">
                 <TextBlock Text="Role:" Margin="0,0,10,0"/>
-                <ComboBox x:Name="cmbRole" SelectedIndex="0" Width="230">
+                <ComboBox x:Name="RoleComboBox" SelectedIndex="0" Width="230">
                     <ComboBoxItem Content="Admin"/>
                     <ComboBoxItem Content="User"/>
                     <ComboBoxItem Content="Manager"/>
                 </ComboBox>
             </StackPanel>
-            <Button x:Name="addUser" Width="100" Height="30" Margin="10,10,0,0" Click="AddUser_Click" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1">
+
+            <!-- Save Button -->
+            <Button x:Name="SaveButton" Width="80" Height="30" Margin="10,10,0,0" Click="SaveButton_Click" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/User Management/user-plus-solid.svg.png" Width="20" Height="20" Margin="0,0,5,0"/>
-                    <TextBlock Text="Add User" VerticalAlignment="Center"/>
+                    <Image Source="/User Management/floppy-disk-solid.svg.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                    <TextBlock Text="Save" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
         </StackPanel>

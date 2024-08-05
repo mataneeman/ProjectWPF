@@ -21,9 +21,14 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="GoBack" Content="Matan Ne'eman" Grid.Column="0" VerticalAlignment="Center"
-                    BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
-                    Margin="10,0,0,0" Padding="10" Click="GoBack_Click" Cursor="Hand">
+            <Button x:Name="GoBack" Grid.Column="0" VerticalAlignment="Center"
+         BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
+         Margin="10,0,0,0" Padding="10" Click="GoBack_Click" Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <!-- הוספת ה-SVG כאן -->
+                    <Image Source="/Brick Braker/arrow-left-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
+                    <TextBlock Text="Matan Ne'eman" VerticalAlignment="Center"/>
+                </StackPanel>
                 <Button.ToolTip>
                     <ToolTip Content="Go Back" />
                 </Button.ToolTip>

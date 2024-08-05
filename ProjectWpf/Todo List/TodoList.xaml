@@ -50,9 +50,18 @@
                             <TextBlock Text="{Binding Description}" Name="txtTaskDescription" Margin="5" TextWrapping="Wrap" Grid.Row="1"/>
                             <TextBox Width="180" Visibility="Collapsed" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="editTaskDescription" Margin="5" Grid.Row="1"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" Grid.Row="2">
-                                <Button Content="Save" Visibility="Collapsed" Click="OnSaveEdit" Name="btnSave" Margin="5" Background="#C8E6C9" Foreground="#000000" Cursor="Hand" BorderBrush="Transparent"/>
-                                <Button Content="Edit" Click="OnEditTask" Padding="5" Margin="5" Background="#2A9D8F" Foreground="White" Cursor="Hand" BorderBrush="Transparent"/>
-                                <Button Content="Delete" Click="OnDeleteTask" Padding="5" Margin="5" Background="Red" Foreground="White" Cursor="Hand" BorderBrush="Transparent"/>
+                                <!-- Save Button with Icon -->
+                                <Button Click="OnSaveEdit" Name="btnSave" Margin="5" Background="Transparent" BorderBrush="Transparent" Cursor="Hand"  Visibility="Collapsed">
+                                    <Image Source="/Todo List/floppy-disk-solid.svg.png" Width="20" Height="20"/>
+                                </Button>
+                                <!-- Edit Button with Icon -->
+                                <Button Click="OnEditTask" Padding="5" Margin="5" Background="Transparent" BorderBrush="Transparent" Cursor="Hand">
+                                    <Image Source="/Todo List/pen-to-square-solid.svg.png" Width="20" Height="20"/>
+                                </Button>
+                                <!-- Delete Button with Icon -->
+                                <Button Click="OnDeleteTask" Padding="5" Margin="5" Background="Transparent" BorderBrush="Transparent" Cursor="Hand">
+                                    <Image Source="/Todo List/trash-solid.svg.png" Width="20" Height="20"/>
+                                </Button>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -69,7 +78,15 @@
             <Border BorderThickness="1" CornerRadius="5" Background="White" Grid.Column="0" VerticalAlignment="Center" BorderBrush="#2A9D8F">
                 <TextBox x:Name="txtNewTask" VerticalAlignment="Center" Padding="2" HorizontalAlignment="Stretch" MinWidth="0" Height="30"/>
             </Border>
-            <Button Content="Add Task" Grid.Column="1" Height="40" Margin="10,0,0,0" Click="Button_Click" Width="120" HorizontalAlignment="Right" Background="#E76F51" Foreground="White" Cursor="Hand" BorderBrush="Transparent"/>
+            <Button Grid.Column="1" Height="40" Margin="10,0,0,0" Click="Button_Click" Width="120" HorizontalAlignment="Right" Background="#E76F51" BorderBrush="Transparent" Cursor="Hand">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="/Todo List/plus-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
+                        <TextBlock Text="Add Task" VerticalAlignment="Center" Foreground="White"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
         </Grid>
     </Grid>
 </Window>

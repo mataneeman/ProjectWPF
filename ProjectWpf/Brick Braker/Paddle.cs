@@ -15,6 +15,8 @@ namespace ProjectWpf.Brick_Braker
             {
                 Width = 90,
                 Height = 13,
+                RadiusX = 5,
+                RadiusY = 5,
                 Fill = Brushes.Black, 
                 StrokeThickness = 1 
             };

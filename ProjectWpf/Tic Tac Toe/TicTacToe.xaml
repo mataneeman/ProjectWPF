@@ -37,6 +37,18 @@
             <Button Content="Play with Friend" Width="150" Height="50" Margin="10" FontSize="16" Background="#2A9D8F" Foreground="White" Click="PlayWithFriend_Click" Grid.Row="1" Cursor="Hand"/>
         </Grid>
 
+        <Grid x:Name="DifficultyMenu" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button Content="Easy" Width="150" Height="50" Margin="10" FontSize="16" Background="#2A9D8F" Foreground="White" Click="DifficultyButton_Click" Grid.Row="1" Tag="Easy" Cursor="Hand"/>
+            <Button Content="Medium" Width="150" Height="50" Margin="10" FontSize="16" Background="#2A9D8F" Foreground="White" Click="DifficultyButton_Click" Grid.Row="2" Tag="Medium" Cursor="Hand"/>
+            <Button Content="Hard" Width="150" Height="50" Margin="10" FontSize="16" Background="#2A9D8F" Foreground="White" Click="DifficultyButton_Click" Grid.Row="3" Tag="Hard" Cursor="Hand"/>
+        </Grid>
+
+
         <!-- Game Grid -->
         <Border BorderBrush="#2A9D8F" BorderThickness="2" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,-10,20,20">
             <Grid x:Name="GameGrid" Visibility="Collapsed">

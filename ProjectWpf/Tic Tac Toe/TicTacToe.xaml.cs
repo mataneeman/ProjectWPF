@@ -48,8 +48,8 @@ namespace ProjectWpf
 
         private void PlayWithComputer_Click(object sender, RoutedEventArgs e)
         {
-            isPlayingWithComputer = true;
-            StartGame();
+            MainMenu.Visibility = Visibility.Collapsed;
+            DifficultyMenu.Visibility = Visibility.Visible;
         }
 
         private void PlayWithFriend_Click(object sender, RoutedEventArgs e)
@@ -64,8 +64,29 @@ namespace ProjectWpf
             MainMenu.Visibility = Visibility.Visible;
             GameGrid.Visibility = Visibility.Collapsed;
             Scoreboard.Visibility = Visibility.Collapsed;
+            DifficultyMenu.Visibility = Visibility.Collapsed; // Hide Difficulty Menu if it's visible
 
             ResetScores();
+        }
+
+        private void DifficultyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            string difficulty = (string)button.Tag;
+
+            if (difficulty == "Easy")
+            {
+                isPlayingWithComputer = true;
+                StartGame();
+            }
+            else if (difficulty == "Hard")
+            {
+                isPlayingWithComputer = true;
+                StartGame();
+                game.SetDifficultyHard();
+            }
+
+            DifficultyMenu.Visibility = Visibility.Collapsed; // Hide Difficulty Menu after selection
         }
 
         private void StartGame()
@@ -104,7 +125,7 @@ namespace ProjectWpf
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            Tuple<int, int> position = (Tuple<int, int>)button.Tag;
+            var position = (Tuple<int, int>)button.Tag;
             int row = position.Item1;
             int col = position.Item2;
 
@@ -127,18 +148,31 @@ namespace ProjectWpf
 
         private void ComputerPlay()
         {
-            Button? btn;
-            int row, col;
+            if (game.IsHardDifficulty)
+            {
+                MakeHardComputerMove();
+            }
+            else
+            {
+                MakeEasyComputerMove();
+            }
+        }
+
+        private void MakeEasyComputerMove()
+        {
+            Button? button;
+            int row;
+            int col;
             do
             {
                 row = random.Next(3);
                 col = random.Next(3);
-                btn = GetButtonAt(row, col);
-            } while (btn == null || !btn.IsEnabled);
+                button = GetButtonAt(row, col);
+            } while (button == null || !button.IsEnabled);
 
-            if (btn != null)
+            if (button != null)
             {
-                game.MarkButton(btn, row, col);
+                game.MarkButton(button, row, col);
                 GameStatus status = game.CheckGameStatus();
                 if (status != GameStatus.InProgress)
                 {
@@ -150,6 +184,105 @@ namespace ProjectWpf
                 }
             }
         }
+
+        private void MakeHardComputerMove()
+        {
+            Button? button;
+            int row;
+            int col;
+            do
+            {
+                row = random.Next(3);
+                col = random.Next(3);
+                button = GetButtonAt(row, col);
+            } while (button == null || !button.IsEnabled);
+            if (button != null)
+            {
+                Tuple<int, int>? position = button.Tag as Tuple<int, int>; 
+                if (position != null)
+                {
+                    game.MarkButton(button, position.Item1, position.Item2);
+                }
+            }
+            else
+            {
+                Button? blockingButton = FindBlockingMove();
+                if (blockingButton != null)
+                {
+                    Tuple<int, int>? position = blockingButton.Tag as Tuple<int, int>;
+                    if (position != null)
+                    {
+                        game.MarkButton(blockingButton, position.Item1, position.Item2);
+                    }
+                }
+                else
+                {
+                    MakeEasyComputerMove();
+                }
+            }
+
+            GameStatus status = game.CheckGameStatus();
+            if (status != GameStatus.InProgress)
+            {
+                EndGame(status);
+            }
+            else
+            {
+                game.SwitchTurn(); 
+            }
+        }
+
+        private Button? FindBlockingMove()
+        {
+            string opponentMark = game.Player1Turn ? "O" : "X";
+
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    Button? button = GetButtonAt(row, col);
+                    if (button != null && button.IsEnabled)
+                    {
+                        button.IsEnabled = false;
+                        game.MarkButton(button, row, col);
+                        if (game.CheckGameStatus() == GameStatus.Win)
+                        {
+                            button.IsEnabled = true;
+                            return button;
+                        }
+                        button.IsEnabled = true;
+                        game.MarkButton(button, row, col);
+                    }
+                }
+            }
+            return null;
+        }
+
+
+        private Button? FindWinningMove()
+        {
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    Button? button = GetButtonAt(row, col);
+                    if (button != null && button.IsEnabled)
+                    {
+                        button.IsEnabled = false;
+                        game.MarkButton(button, row, col);
+                        if (game.CheckGameStatus() == GameStatus.Win)
+                        {
+                            button.IsEnabled = true;
+                            return button;
+                        }
+                        button.IsEnabled = true;
+                        game.MarkButton(button, row, col);
+                    }
+                }
+            }
+            return null; 
+        }
+
 
         private Button? GetButtonAt(int row, int col)
         {
@@ -190,7 +323,6 @@ namespace ProjectWpf
             GameOverMessage.Text = winnerMessage;  // Update the Game Over message
             GameOverOverlay.Visibility = Visibility.Visible;
         }
-
 
         private void PlayAgainButton_Click(object sender, RoutedEventArgs e)
         {

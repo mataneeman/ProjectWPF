@@ -12,15 +12,16 @@ namespace ProjectWpf.Brick_Braker
 {
     public partial class BrickBrakerGame : Window
     {
-        private Ellipse? _ball; // Allow nullable
-        private Paddle? _paddle; // Allow nullable
-        private List<Rectangle> _bricks = new List<Rectangle>(); // Initialize in-place
-        private DispatcherTimer? _gameTimer; // Allow nullable
+        private Ellipse? _ball; 
+        private Paddle? _paddle; 
+        private List<Rectangle> _bricks = new List<Rectangle>(); 
+        private DispatcherTimer? _gameTimer; 
         private Vector _ballVelocity;
         private bool _isGameRunning;
         private GameViewModel _viewModel;
         private int _currentLevel;
         private const int TotalLevels = 10;
+
 
         public BrickBrakerGame()
         {
@@ -56,7 +57,7 @@ namespace ProjectWpf.Brick_Braker
             if (_ball != null) GameCanvas.Children.Add(_ball);
             if (_paddle != null) GameCanvas.Children.Add(_paddle);
 
-            _ballVelocity = new Vector(5, -5);
+            _ballVelocity = new Vector(7, -7);
 
             _gameTimer = new DispatcherTimer
             {
@@ -172,7 +173,7 @@ namespace ProjectWpf.Brick_Braker
             const int brickHeight = 20;
             const int gap = 1;
 
-            Brush[] colors = { Brushes.Purple, Brushes.Goldenrod, Brushes.Blue };
+            Brush[] colors = { Brushes.Cyan,Brushes.Salmon };
             Random random = new Random();
 
             foreach (var brick in _bricks.ToList())
@@ -258,7 +259,7 @@ namespace ProjectWpf.Brick_Braker
             {
                 _isGameRunning = true;
                 if (_gameTimer != null) _gameTimer.Start();
-                _ballVelocity = new Vector(5, -5);
+                _ballVelocity = new Vector(7, -7);
                 StartButton.Visibility = Visibility.Collapsed;
             }
         }

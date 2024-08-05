@@ -7,8 +7,14 @@ namespace ProjectWpf
     {
         private bool player1Turn = true;
         private GameBoard gameBoard = new GameBoard();
+        public bool IsHardDifficulty { get; private set; }
 
         public bool Player1Turn { get { return player1Turn; } }
+
+        public void SetDifficultyHard()
+        {
+            IsHardDifficulty = true;
+        }
 
         public void MarkButton(Button btn, int row, int col)
         {
@@ -55,4 +61,5 @@ namespace ProjectWpf
             player1Turn = !player1Turn;
         }
     }
+
 }
