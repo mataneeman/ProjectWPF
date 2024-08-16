@@ -15,8 +15,10 @@ namespace ProjectWpf.Brick_Braker
             {
                 Width = width,
                 Height = height,
-                Fill = Brushes.Orange 
+                RadiusX = 5,
+                RadiusY = 5,
             };
+            
 
             Canvas.SetLeft(_rectangle, x);
             Canvas.SetTop(_rectangle, y);

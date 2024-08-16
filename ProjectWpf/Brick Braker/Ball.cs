@@ -17,6 +17,7 @@ namespace ProjectWpf.Brick_Braker
             {
                 Width = 15,
                 Height = 15,
+               
 
             };
 
@@ -24,7 +25,7 @@ namespace ProjectWpf.Brick_Braker
             this.Content = _ellipse;
 
             // Set default velocity
-            Velocity = new Vector(5, -5);
+            Velocity = new Vector(3, -3);
         }
     }
 }

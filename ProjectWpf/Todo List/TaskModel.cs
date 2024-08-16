@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProjectWpf.Todo_List
 {
-    class TaskModel
+    public class TaskModel
     {
         public int Id { get; set; }
         public string Description { get; set; }
         public DateTime CreationTime { get; set; }
         public bool IsCompleted { get; set; }
+
+        public TaskModel() { }
 
         public TaskModel(int id, string description)
         {
@@ -20,9 +22,10 @@ namespace ProjectWpf.Todo_List
             IsCompleted = false;
             CreationTime = DateTime.Now;
         }
+
         public override string ToString()
         {
-            return $"{Id}. {Description} - {CreationTime.ToString()} - Is Done: {IsCompleted}";
+            return $"{Id}. {Description} - {CreationTime} - Is Done: {IsCompleted}";
         }
     }
 }

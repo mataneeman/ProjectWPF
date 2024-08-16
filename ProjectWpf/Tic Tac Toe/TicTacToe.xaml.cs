@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;  
 
 namespace ProjectWpf
 {
@@ -12,7 +13,6 @@ namespace ProjectWpf
         private bool isPlayingWithComputer;
         private int player1Score;
         private int player2Score;
-        private int drawsScore;
         private Random random = new Random();
 
         public TicTacToe()
@@ -20,6 +20,7 @@ namespace ProjectWpf
             InitializeComponent();
             InitializeButtons();
             UpdateScoreboard();
+
         }
 
         private void InitializeButtons()
@@ -64,7 +65,7 @@ namespace ProjectWpf
             MainMenu.Visibility = Visibility.Visible;
             GameGrid.Visibility = Visibility.Collapsed;
             Scoreboard.Visibility = Visibility.Collapsed;
-            DifficultyMenu.Visibility = Visibility.Collapsed; // Hide Difficulty Menu if it's visible
+            DifficultyMenu.Visibility = Visibility.Collapsed; 
 
             ResetScores();
         }
@@ -77,16 +78,17 @@ namespace ProjectWpf
             if (difficulty == "Easy")
             {
                 isPlayingWithComputer = true;
+                game.SetDifficultyEasy();
                 StartGame();
             }
             else if (difficulty == "Hard")
             {
                 isPlayingWithComputer = true;
-                StartGame();
                 game.SetDifficultyHard();
+                StartGame();
             }
 
-            DifficultyMenu.Visibility = Visibility.Collapsed; // Hide Difficulty Menu after selection
+            DifficultyMenu.Visibility = Visibility.Collapsed;
         }
 
         private void StartGame()
@@ -129,6 +131,8 @@ namespace ProjectWpf
             int row = position.Item1;
             int col = position.Item2;
 
+            if (!button.IsEnabled) return;
+
             game.MarkButton(button, row, col);
             GameStatus status = game.CheckGameStatus();
 
@@ -141,10 +145,12 @@ namespace ProjectWpf
                 game.SwitchTurn();
                 if (isPlayingWithComputer && !game.Player1Turn)
                 {
+                    Thread.Sleep(1000);
                     ComputerPlay();
                 }
             }
         }
+
 
         private void ComputerPlay()
         {
@@ -187,50 +193,42 @@ namespace ProjectWpf
 
         private void MakeHardComputerMove()
         {
-            Button? button;
-            int row;
-            int col;
-            do
-            {
-                row = random.Next(3);
-                col = random.Next(3);
-                button = GetButtonAt(row, col);
-            } while (button == null || !button.IsEnabled);
+            Button? button = FindBlockingMove();
             if (button != null)
             {
-                Tuple<int, int>? position = button.Tag as Tuple<int, int>; 
-                if (position != null)
-                {
-                    game.MarkButton(button, position.Item1, position.Item2);
-                }
+                MakeMove(button);
+                return;
             }
-            else
+
+            button = FindWinningMove();
+            if (button != null)
             {
-                Button? blockingButton = FindBlockingMove();
-                if (blockingButton != null)
+                MakeMove(button);
+                return;
+            }
+
+            MakeEasyComputerMove();
+        }
+
+        private void MakeMove(Button button)
+        {
+            Tuple<int, int>? position = button.Tag as Tuple<int, int>;
+            if (position != null)
+            {
+                game.MarkButton(button, position.Item1, position.Item2);
+                GameStatus status = game.CheckGameStatus();
+                if (status != GameStatus.InProgress)
                 {
-                    Tuple<int, int>? position = blockingButton.Tag as Tuple<int, int>;
-                    if (position != null)
-                    {
-                        game.MarkButton(blockingButton, position.Item1, position.Item2);
-                    }
+                    EndGame(status);
                 }
                 else
                 {
-                    MakeEasyComputerMove();
+                    game.SwitchTurn();
                 }
             }
-
-            GameStatus status = game.CheckGameStatus();
-            if (status != GameStatus.InProgress)
-            {
-                EndGame(status);
-            }
-            else
-            {
-                game.SwitchTurn(); 
-            }
         }
+
+       
 
         private Button? FindBlockingMove()
         {
@@ -258,7 +256,6 @@ namespace ProjectWpf
             return null;
         }
 
-
         private Button? FindWinningMove()
         {
             for (int row = 0; row < 3; row++)
@@ -280,9 +277,8 @@ namespace ProjectWpf
                     }
                 }
             }
-            return null; 
+            return null;
         }
-
 
         private Button? GetButtonAt(int row, int col)
         {
@@ -315,12 +311,11 @@ namespace ProjectWpf
                     break;
                 case GameStatus.Draw:
                     winnerMessage = "It's a draw!";
-                    drawsScore++;
                     break;
             }
 
             UpdateScoreboard();
-            GameOverMessage.Text = winnerMessage;  // Update the Game Over message
+            GameOverMessage.Text = winnerMessage;  
             GameOverOverlay.Visibility = Visibility.Visible;
         }
 
@@ -333,8 +328,7 @@ namespace ProjectWpf
         {
             player1Score = 0;
             player2Score = 0;
-            drawsScore = 0;
-            UpdateScoreboard();
+              UpdateScoreboard();
         }
     }
 }

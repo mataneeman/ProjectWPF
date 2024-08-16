@@ -21,10 +21,6 @@
                 <TextBlock Text="{Binding Score}" FontSize="16" Foreground="black" Margin="10"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="High Score: " FontSize="16" Foreground="Black" Margin="10"/>
-                <TextBlock Text="{Binding HighScore}" Foreground="Black" FontSize="16" Margin="10"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Level: "  Foreground="Black" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
                 <TextBlock x:Name="LevelTextBlock" Text="1" FontSize="36" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
             </StackPanel>
@@ -36,16 +32,41 @@
                     <Canvas x:Name="GameCanvas" Width="400" Height="400">
                     </Canvas>
                 </Border>
-                <Grid x:Name="GameOverOverlay" Background="#80000000" Visibility="Collapsed">
+                <Border x:Name="GameOverOverlay" Background="#80000000" Visibility="Collapsed">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" Margin="10">
                         <TextBlock x:Name="GameOverText" Text="Game Over" FontSize="36" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-                        <Button x:Name="ResetButton" Content="Reset" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="ResetButton_Click" Cursor="Hand"/>
+                        <TextBlock x:Name="HighScoresText" Text="High Scores" FontSize="24" Foreground="White" TextAlignment="Center" Margin="0,0,0,20"/>
+                        <Button x:Name="ResetButton" Content="Restart" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="ResetButton_Click" Cursor="Hand"/>
                     </StackPanel>
-                </Grid>
+                </Border>
+
             </Grid>
         </Viewbox>
 
         <!-- Start Button -->
         <Button x:Name="StartButton" Content="Start" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="StartButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20" Cursor="Hand"/>
+
+        <!-- Legend -->
+        <Border Background="White" BorderBrush="#2A9D8F" BorderThickness="1" Width="170" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="Legend:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <Polygon Points="10,0 20,10 10,20 0,10" Fill="Blue" Margin="0,0,10,0" Width="20" Height="20"/>
+                    <TextBlock Text="Add Paddle Size" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <Polygon Points="10,0 20,10 10,20 0,10" Fill="Green" Margin="0,0,10,0" Width="20" Height="20"/>
+                    <TextBlock Text="Extra Ball Speed" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <Polygon Points="10,0 20,10 10,20 0,10" Fill="Orange" Margin="0,0,10,0" Width="20" Height="20"/>
+                    <TextBlock Text="Add Bricks" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Polygon Points="10,0 20,10 10,20 0,10" Fill="Red" Margin="0,0,10,0" Width="20" Height="20"/>
+                    <TextBlock Text="Shield" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

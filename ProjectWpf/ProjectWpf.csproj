@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\1034785-200.png" />
+    <None Remove="assets\1560.png" />
+    <None Remove="assets\1687634.png" />
+    <None Remove="assets\floppy-disk-solid.svg.png" />
+    <None Remove="assets\pen-to-square-solid.svg.png" />
+    <None Remove="assets\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
+    <None Remove="assets\tic-tac-toe-game.png" />
+    <None Remove="assets\trash-solid.svg.png" />
     <None Remove="Brick Braker\1687634.png" />
     <None Remove="Brick Braker\arrow-left-solid.svg.png" />
     <None Remove="Home Page\1034785-200.png" />
@@ -20,7 +28,6 @@
     <None Remove="Home Page\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
     <None Remove="Home Page\tic-tac-toe-game.png" />
     <None Remove="Home Page\to-do-list-neon-design-template-vector-40905379.jpg" />
-    <None Remove="Brick Braker\6168771.png" />
     <None Remove="Snake\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
     <None Remove="Tic Tac Toe\1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg" />
     <None Remove="Tic Tac Toe\4047394_developer_development_object_oriented_programming_icon.png" />
@@ -28,7 +35,6 @@
     <None Remove="Tic Tac Toe\74906.png" />
     <None Remove="Tic Tac Toe\oop-icon-free-vector.jpg" />
     <None Remove="Tic Tac Toe\tic-tac-toe-game.png" />
-    <None Remove="Tic Tac Toe\wpf-logo-wpf-letter-wpf-letter-logo-design-initials-wpf-logo-linked-with-circle-uppercase-monogram-logo-wpf-typography-technology-business-real-estate-brand_229120-78143.jpg.png" />
     <None Remove="Todo List\1560.png" />
     <None Remove="Todo List\floppy-disk-solid.svg.png" />
     <None Remove="Todo List\pen-to-square-solid.svg.png" />
@@ -42,30 +48,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Brick Braker\1687634.png" />
-    <Resource Include="Brick Braker\arrow-left-solid.svg.png" />
-    <Resource Include="Home Page\1034785-200.png" />
-    <Resource Include="Home Page\1560.png" />
-    <Resource Include="Home Page\1687634.png" />
-    <Resource Include="Home Page\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
-    <Resource Include="Home Page\tic-tac-toe-game.png" />
-    <Resource Include="Brick Braker\6168771.png" />
-    <Resource Include="Snake\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
-    <Resource Include="Tic Tac Toe\1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg" />
-    <Resource Include="Tic Tac Toe\74906.png" />
-    <Resource Include="Tic Tac Toe\oop-icon-free-vector.jpg" />
-    <Resource Include="Tic Tac Toe\tic-tac-toe-game.png" />
-    <Resource Include="Tic Tac Toe\wpf-logo-wpf-letter-wpf-letter-logo-design-initials-wpf-logo-linked-with-circle-uppercase-monogram-logo-wpf-typography-technology-business-real-estate-brand_229120-78143.jpg.png" />
-    <Resource Include="Todo List\1560.png" />
-    <Resource Include="Todo List\floppy-disk-solid.svg.png" />
-    <Resource Include="Todo List\pen-to-square-solid.svg.png" />
-    <Resource Include="Todo List\plus-solid.svg.png" />
-    <Resource Include="Todo List\trash-solid.svg.png" />
-    <Resource Include="User Management\1034785-200.png" />
-    <Resource Include="User Management\floppy-disk-solid.svg.png" />
-    <Resource Include="User Management\pen-to-square-solid.svg.png" />
-    <Resource Include="User Management\trash-solid.svg.png" />
-    <Resource Include="User Management\user-plus-solid.svg.png" />
+    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\1687634.png" />
+    <Resource Include="assets\arrow-left-solid.svg.png" />
+    <Resource Include="assets\1034785-200.png" />
+    <Resource Include="assets\1560.png" />
+    <Resource Include="assets\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
+    <Resource Include="assets\tic-tac-toe-game.png" />
+    <Resource Include="assets\1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg" />
+    <Resource Include="assets\74906.png" />
+    <Resource Include="assets\oop-icon-free-vector.jpg" />
+    <Resource Include="assets\floppy-disk-solid.svg.png" />
+    <Resource Include="assets\pen-to-square-solid.svg.png" />
+    <Resource Include="assets\plus-solid.svg.png" />
+    <Resource Include="assets\trash-solid.svg.png" />
+    <Resource Include="assets\user-plus-solid.svg.png" />
   </ItemGroup>
 
 </Project>

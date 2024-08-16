@@ -19,8 +19,6 @@ namespace ProjectWpf.Todo_List
         private void InitializeTasks()
         {
             _todoList = new TaskManagerService();
-            _todoList.AddNewTask(new TaskModel(1, "To do homework"));
-            _todoList.AddNewTask(new TaskModel(2, "Complete the project"));
             taskPanel.ItemsSource = _todoList.Tasks; 
         }
 

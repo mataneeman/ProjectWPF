@@ -15,6 +15,10 @@ namespace ProjectWpf
         {
             IsHardDifficulty = true;
         }
+        public void SetDifficultyEasy()
+        {
+            IsHardDifficulty = false;
+        }
 
         public void MarkButton(Button btn, int row, int col)
         {
