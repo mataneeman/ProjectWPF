@@ -16,7 +16,10 @@
     {
         board[row, col] = isPlayer1Turn ? Player1 : Player2;
     }
-
+    public void ReverseBoardState(int row, int col)
+    {
+        board[row, col] = 0;
+    }
     public bool CheckForWin(int player)
     {
         return CheckRows(player) || CheckColumns(player) || CheckDiagonals(player);

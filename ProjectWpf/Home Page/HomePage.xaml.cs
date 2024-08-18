@@ -70,5 +70,9 @@ namespace ProjectWpf
         {
             NavigationService.Navigate(new Brick_Braker.BrickBrakerPage());
         }
+        private void Countries_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Countries.CountriesPage());
+        }
     }
 }

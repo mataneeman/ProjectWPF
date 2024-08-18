@@ -23,10 +23,10 @@
     <None Remove="Home Page\1560.png" />
     <None Remove="Home Page\1687634.png" />
     <None Remove="Home Page\201141227-neon-brick-wall-background-with-glowing-neon-lights-vector-illustration.jpg" />
+    <None Remove="Home Page\3437694-200.png" />
     <None Remove="Home Page\glowing-neon-line-tic-tac-toe-game-icon-isolated-vector-34119572.jpg" />
     <None Remove="Home Page\neon-light-group-line-icon-users-or-teamwork-sign-vector-35429906.jpg" />
     <None Remove="Home Page\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
-    <None Remove="Home Page\tic-tac-toe-game.png" />
     <None Remove="Home Page\to-do-list-neon-design-template-vector-40905379.jpg" />
     <None Remove="Snake\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
     <None Remove="Tic Tac Toe\1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg" />
@@ -66,6 +66,7 @@
     <Resource Include="assets\plus-solid.svg.png" />
     <Resource Include="assets\trash-solid.svg.png" />
     <Resource Include="assets\user-plus-solid.svg.png" />
+    <Resource Include="Home Page\3437694-200.png" />
   </ItemGroup>
 
 </Project>

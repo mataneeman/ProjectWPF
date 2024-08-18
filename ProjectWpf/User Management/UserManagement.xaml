@@ -99,11 +99,11 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <!-- Button with edit icon -->
                                     <Button Click="EditUser_Click" CommandParameter="{Binding}" Background="Transparent" BorderBrush="Transparent" Cursor="Hand" Margin="100,0,5,0" Padding="5">
-                                        <Image Source="/User Management/pen-to-square-solid.svg.png" Width="20" Height="20"/>
+                                        <Image Source="/assets/pen-to-square-solid.svg.png" Width="20" Height="20"/>
                                     </Button>
                                     <!-- Button with delete icon -->
                                     <Button Click="DeleteUser_Click" CommandParameter="{Binding}" Background="Transparent" BorderBrush="Transparent" Cursor="Hand" Padding="5">
-                                        <Image Source="/User Management/trash-solid.svg.png" Width="20" Height="20"/>
+                                        <Image Source="/assets/trash-solid.svg.png" Width="20" Height="20"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
@@ -119,7 +119,7 @@
         HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Cursor="Hand">
             <Button.Content>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/User Management/user-plus-solid.svg.png" Width="20" Height="20" Margin="5,0,10,0" Stretch="Uniform"/>
+                    <Image Source="/assets/user-plus-solid.svg.png" Width="20" Height="20" Margin="5,0,10,0" Stretch="Uniform"/>
                     <TextBlock Text="Add User" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button.Content>

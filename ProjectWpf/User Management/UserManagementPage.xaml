@@ -26,7 +26,7 @@
          Margin="10,0,0,0" Padding="10" Click="GoBack_Click" Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
                     <!-- הוספת ה-SVG כאן -->
-                    <Image Source="/Brick Braker/arrow-left-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
+                    <Image Source="/assets/arrow-left-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
                     <TextBlock Text="Matan Ne'eman" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button.ToolTip>
@@ -56,7 +56,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Image Section -->
-            <Image x:Name="image" Grid.Column="0" Height="250" Margin="10" VerticalAlignment="Center" Width="250" Source="/User Management/1034785-200.png" Stretch="Fill"/>
+            <Image x:Name="image" Grid.Column="0" Height="250" Margin="10" VerticalAlignment="Center" Width="250" Source="/assets/1034785-200.png" Stretch="Fill"/>
 
             <!-- Text Section -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">

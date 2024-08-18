@@ -26,7 +26,7 @@
          Margin="10,0,0,0" Padding="10" Click="GoBack_Click" Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
                     <!-- הוספת ה-SVG כאן -->
-                    <Image Source="/Brick Braker/arrow-left-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
+                    <Image Source="/assets/arrow-left-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
                     <TextBlock Text="Matan Ne'eman" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button.ToolTip>
@@ -57,7 +57,7 @@
 
             <!-- Image Section -->
             <Image x:Name="image" Grid.Column="0" Height="250" Margin="10" VerticalAlignment="Center" 
-                   Width="250" Source="/Snake/pngtree-portable-snake-game-lader-play-png-image_5192857.png" 
+                   Width="250" Source="/assets/pngtree-portable-snake-game-lader-play-png-image_5192857.png" 
                    Stretch="UniformToFill" />
 
             <!-- Text Section -->

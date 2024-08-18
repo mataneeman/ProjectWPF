@@ -145,24 +145,12 @@ namespace ProjectWpf
                 game.SwitchTurn();
                 if (isPlayingWithComputer && !game.Player1Turn)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                     ComputerPlay();
                 }
             }
         }
 
-
-        private void ComputerPlay()
-        {
-            if (game.IsHardDifficulty)
-            {
-                MakeHardComputerMove();
-            }
-            else
-            {
-                MakeEasyComputerMove();
-            }
-        }
 
         private void MakeEasyComputerMove()
         {
@@ -228,11 +216,10 @@ namespace ProjectWpf
             }
         }
 
-       
-
-        private Button? FindBlockingMove()
+        private Button? FindBestMove(bool isBlocking)
         {
-            string opponentMark = game.Player1Turn ? "O" : "X";
+            int currentPlayer = game.Player1Turn ? 1 : 2;
+            int opponentPlayer = isBlocking ? (currentPlayer == 1 ? 2 : 1) : currentPlayer;
 
             for (int row = 0; row < 3; row++)
             {
@@ -241,44 +228,72 @@ namespace ProjectWpf
                     Button? button = GetButtonAt(row, col);
                     if (button != null && button.IsEnabled)
                     {
-                        button.IsEnabled = false;
+                        // Temporarily mark the button
+                       // button.IsEnabled = false;
                         game.MarkButton(button, row, col);
-                        if (game.CheckGameStatus() == GameStatus.Win)
+
+                        // Check if placing a mark at this position results in a win or block
+                        GameStatus status = game.CheckGameStatus();
+
+                        if (status == GameStatus.Win)
                         {
-                            button.IsEnabled = true;
+                            // Revert the button state
+                           // button.IsEnabled = true;
+                            game.ReverseMarkButton(button, row, col); // Revert marking
                             return button;
                         }
-                        button.IsEnabled = true;
-                        game.MarkButton(button, row, col);
+
+                        // Revert the button state
+                        //button.IsEnabled = true;
+                        game.ReverseMarkButton(button, row, col); // Revert marking
                     }
                 }
             }
             return null;
+        }
+
+        private Button? FindBlockingMove()
+        {
+            return FindBestMove(isBlocking: true);
         }
 
         private Button? FindWinningMove()
         {
-            for (int row = 0; row < 3; row++)
-            {
-                for (int col = 0; col < 3; col++)
-                {
-                    Button? button = GetButtonAt(row, col);
-                    if (button != null && button.IsEnabled)
-                    {
-                        button.IsEnabled = false;
-                        game.MarkButton(button, row, col);
-                        if (game.CheckGameStatus() == GameStatus.Win)
-                        {
-                            button.IsEnabled = true;
-                            return button;
-                        }
-                        button.IsEnabled = true;
-                        game.MarkButton(button, row, col);
-                    }
-                }
-            }
-            return null;
+            return FindBestMove(isBlocking: false);
         }
+
+        private void ComputerPlay()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (game.IsHardDifficulty)
+                {
+                    Button? button = FindBlockingMove();
+                    var args = new RoutedEventArgs(Button.ClickEvent);
+                    Button_Click(button,args);
+                    return;
+                    /*if (button != null)
+                    {
+                        MakeMove(button);
+                        return;
+                    }
+
+                    button = FindWinningMove();
+                    if (button != null)
+                    {
+                        MakeMove(button);
+                        return;
+                    }*/
+                }
+
+                // Fallback to easy move if no blocking or winning move is found
+                MakeEasyComputerMove();
+            });
+        }
+
+
+
+
 
         private Button? GetButtonAt(int row, int col)
         {

@@ -27,6 +27,12 @@ namespace ProjectWpf
             gameBoard.UpdateBoardState(row, col, player1Turn);
         }
 
+        public void ReverseMarkButton(Button btn, int row, int col)
+        {
+            btn.Content ="";
+            btn.IsEnabled = true;
+            gameBoard.ReverseBoardState(row, col);
+        }
         public GameStatus CheckGameStatus()
         {
             int currentPlayer = player1Turn ? 1 : 2;
@@ -53,6 +59,7 @@ namespace ProjectWpf
 
             return GameStatus.InProgress;
         }
+
 
         public void ResetGame()
         {

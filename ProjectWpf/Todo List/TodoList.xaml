@@ -52,15 +52,15 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" Grid.Row="2">
                                 <!-- Save Button with Icon -->
                                 <Button Click="OnSaveEdit" Name="btnSave" Margin="5" Background="Transparent" BorderBrush="Transparent" Cursor="Hand"  Visibility="Collapsed">
-                                    <Image Source="/Todo List/floppy-disk-solid.svg.png" Width="20" Height="20"/>
+                                    <Image Source="/assets/floppy-disk-solid.svg.png" Width="20" Height="20"/>
                                 </Button>
                                 <!-- Edit Button with Icon -->
                                 <Button Click="OnEditTask" Padding="5" Margin="5" Background="Transparent" BorderBrush="Transparent" Cursor="Hand">
-                                    <Image Source="/Todo List/pen-to-square-solid.svg.png" Width="20" Height="20"/>
+                                    <Image Source="/assets/pen-to-square-solid.svg.png" Width="20" Height="20"/>
                                 </Button>
                                 <!-- Delete Button with Icon -->
                                 <Button Click="OnDeleteTask" Padding="5" Margin="5" Background="Transparent" BorderBrush="Transparent" Cursor="Hand">
-                                    <Image Source="/Todo List/trash-solid.svg.png" Width="20" Height="20"/>
+                                    <Image Source="/assets/trash-solid.svg.png" Width="20" Height="20"/>
                                 </Button>
                             </StackPanel>
                         </Grid>
@@ -81,7 +81,7 @@
             <Button Grid.Column="1" Height="40" Margin="10,0,0,0" Click="Button_Click" Width="120" HorizontalAlignment="Right" Background="#E76F51" BorderBrush="Transparent" Cursor="Hand">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image Source="/Todo List/plus-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
+                        <Image Source="/assets/plus-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
                         <TextBlock Text="Add Task" VerticalAlignment="Center" Foreground="White"/>
                     </StackPanel>
                 </Button.Content>
