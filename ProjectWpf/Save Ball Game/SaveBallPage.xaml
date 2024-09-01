@@ -1,12 +1,12 @@
-﻿<Page x:Class="ProjectWpf.Tic_Tac_Toe.TicTacToePage"
+﻿<Page x:Class="ProjectWpf.Save_Ball_Game.SaveBallPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ProjectWpf.Tic_Tac_Toe"
+      xmlns:local="clr-namespace:ProjectWpf.Save_Ball_Game"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TicTacToePage">
+      Title="SaveBallPage">
 
     <Grid Background="#FF4CB7A6">
         <!-- Header Section -->
@@ -42,7 +42,6 @@
                 </StackPanel>
             </Grid>
 
-            <!-- Label aligned to the right -->
             <Label x:Name="Project" Content="Project By WPF" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"
                    BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
                    Margin="10,0,10,0" Padding="10" />
@@ -68,15 +67,16 @@
             </Grid.ColumnDefinitions>
 
             <!-- Image Section -->
-            <Image x:Name="image" Grid.Column="0" Height="250" Margin="0" VerticalAlignment="Center" 
-                   Width="250" Source="/assets/tic-tac-toe-game.png" Stretch="UniformToFill" />
+            <Image x:Name="image" Grid.Column="0" Height="250" Margin="1" VerticalAlignment="Center" 
+                   Width="250" Source="/assets/6168771.png" Stretch="UniformToFill" />
 
             <!-- Text Section -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
-                <TextBlock x:Name="tictactoe" Text="Tic Tac Toe" TextWrapping="Wrap" FontSize="24" FontWeight="Bold" Foreground="White"/>
-                <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Text="Introduction to Tic-Tac-Toe Game Welcome to the Tic-Tac-Toe game implemented in WPF (Windows Presentation Foundation). This classic game involves two players, X and O, taking turns to mark spaces in a 3x3 grid. The objective is to be the first to align three of your marks horizontally, vertically, or diagonally." Foreground="White" Margin="0,10,0,20"/>
-                <Button x:Name="tictactoeGame" Content="Play Game" Padding="5" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="tictactoeGame_Click" FontSize="16" FontWeight="Bold" Cursor="Hand"/>
+                <TextBlock x:Name="SaveBallGame" Text="Save Ball Game" TextWrapping="Wrap" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Text="Welcome to the Snack Game. This project is built using WPF (Windows Presentation Foundation) and C#. It offers a fun and interactive game experience with easy-to-understand gameplay and controls." Foreground="White" Margin="0,10,0,20"/>
+                <Button x:Name="SaveBallGamePlay" Content="Play Game" Padding="5" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="SaveBallGamePlay_click" FontSize="16" FontWeight="Bold" Cursor="Hand"/>
             </StackPanel>
         </Grid>
     </Grid>
+
 </Page>

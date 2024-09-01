@@ -36,9 +36,9 @@
 
             <Grid Grid.Column="1" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Image x:Name="image1" Height="42" Margin="0,0,10,0" Width="38" Source="/Tic Tac Toe/74906.png"/>
-                    <Image x:Name="image1_Copy" Height="42" Margin="0,0,10,0" Width="38" Source="/Tic Tac Toe/1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg"/>
-                    <Image x:Name="image1_Copy1" Height="42" Margin="0,0,10,0" Width="38" Source="/Tic Tac Toe/oop-icon-free-vector.jpg"/>
+                    <Image x:Name="image1" Height="42" Margin="0,0,10,0" Width="38" Source="/assets/74906.png"/>
+                    <Image x:Name="image1_Copy" Height="42" Margin="0,0,10,0" Width="38" Source="/assets/1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg"/>
+                    <Image x:Name="image1_Copy1" Height="42" Margin="0,0,10,0" Width="38" Source="/assets/oop-icon-free-vector.jpg"/>
                 </StackPanel>
             </Grid>
 
@@ -46,7 +46,18 @@
                    BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
                    Margin="10,0,10,0" Padding="10" />
         </Grid>
-
+        <Grid Height="40" Background="White" VerticalAlignment="Bottom">
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
+            </Grid.Effect>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Copyright © 2024. All rights reserved."
+             Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+             BorderThickness="0" Background="Transparent" Foreground="Gray" FontWeight="Bold" Margin="10" Padding="1" FontSize="12"/>
+        </Grid>
         <!-- Main Content Section -->
         <Grid Margin="20,70,20,20">
             <!-- Added top margin to prevent overlap with header -->

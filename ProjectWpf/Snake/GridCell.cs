@@ -23,7 +23,7 @@ namespace ProjectWpf.Snack
                 Stretch = Stretch.Fill,
                 RadiusX = 5,
                 RadiusY = 5,
-                Margin = new Thickness(1) // Add margin to create spacing effect
+                Margin = new Thickness(1) 
             };
             Children.Add(rectangle);
         }
@@ -34,7 +34,7 @@ namespace ProjectWpf.Snack
             {
                 case CellState.Empty:
                     rectangle.Fill = originalFill;
-                    rectangle.Effect = null; // Remove effect when empty
+                    rectangle.Effect = null; 
                     break;
                 case CellState.Snake:
                     rectangle.Fill = Brushes.Green;
@@ -46,21 +46,25 @@ namespace ProjectWpf.Snack
                         Opacity = 0.6,
                         BlurRadius = 6
                     };
-                    AnimateGrowth(); // Call animation for snake growth
+                    AnimateGrowth(); 
                     break;
                 case CellState.Apple:
                     rectangle.Fill = Brushes.Red;
-                    rectangle.Effect = null; // Remove effect when showing apple
+                    rectangle.Effect = null;
+                    break;
+                case CellState.Wall:
+                    rectangle.Fill = Brushes.DimGray;
+                    rectangle.Effect = null; 
                     break;
             }
         }
 
         private void AnimateGrowth()
         {
-            var scaleTransform = new ScaleTransform();
+            ScaleTransform scaleTransform = new ScaleTransform();
             rectangle.RenderTransform = scaleTransform;
 
-            var scaleAnimation = new DoubleAnimation
+            DoubleAnimation scaleAnimation = new DoubleAnimation
             {
                 From = 1,
                 To = 1.2,
@@ -71,6 +75,5 @@ namespace ProjectWpf.Snack
             scaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleAnimation);
             scaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleAnimation);
         }
-
     }
 }

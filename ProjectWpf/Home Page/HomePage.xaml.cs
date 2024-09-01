@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectWpf.Memory_Game_Merage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,6 +74,15 @@ namespace ProjectWpf
         private void Countries_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Countries.CountriesPage());
+        }
+        private void MemoryGame_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Memory_Game_Merage.MemoryGamePage());
+        }
+
+        private void SaveBallGame_Click(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Save_Ball_Game.SaveBallPage());
         }
     }
 }

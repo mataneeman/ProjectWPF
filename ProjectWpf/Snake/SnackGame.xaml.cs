@@ -14,21 +14,28 @@ namespace ProjectWpf.Snack
         private DispatcherTimer gameTimer;
         private const int GridSize = 20;
         private HighScoresManager highScoresManager;
+        private DispatcherTimer wallMoveTimer;
+
 
         public SnackGame()
         {
             InitializeComponent();
             highScoresManager = new HighScoresManager();
-            game = new Game(GridSize, GridSize); // Initialize Game here
-            gameTimer = new DispatcherTimer // Initialize DispatcherTimer here
+            game = new Game(GridSize, GridSize); 
+            gameTimer = new DispatcherTimer 
             {
-                Interval = TimeSpan.FromMilliseconds(200) // Default interval
+                Interval = TimeSpan.FromMilliseconds(200) 
             };
             gameTimer.Tick += GameTimer_Tick;
 
-            InitializeGame(); // Initialize game settings
+            wallMoveTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(10) 
+            };
+            wallMoveTimer.Tick += WallMoveTimer_Tick;
 
-            // Set default selection to "Easy"
+            InitializeGame();
+
             foreach (ComboBoxItem item in DifficultyComboBox.Items)
             {
                 if (item.Content.ToString() == "Easy")
@@ -38,6 +45,13 @@ namespace ProjectWpf.Snack
                 }
             }
         }
+        private void WallMoveTimer_Tick(object? sender, EventArgs e)
+        {
+            game.GenerateWalls(); 
+            UpdateUI(); 
+        }
+
+
 
         private void InitializeGame()
         {
@@ -48,22 +62,18 @@ namespace ProjectWpf.Snack
 
         private void InitializeGameGrid()
         {
-            // Define the number of rows and columns for UniformGrid
             GameGrid.Rows = GridSize;
             GameGrid.Columns = GridSize;
 
-            // Clear previous content
             GameGrid.Children.Clear();
 
-            // Add cells to the UniformGrid
             for (int row = 0; row < GridSize; row++)
             {
                 for (int col = 0; col < GridSize; col++)
                 {
-                    bool isLightGreen = (row + col) % 2 == 0; // Alternate colors
+                    bool isLightGreen = (row + col) % 2 == 0; 
                     GridCell cell = new GridCell(isLightGreen);
 
-                    // Add cell to the UniformGrid without specifying row and column
                     GameGrid.Children.Add(cell);
                 }
             }
@@ -71,7 +81,6 @@ namespace ProjectWpf.Snack
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set default selection to "Easy"
             foreach (ComboBoxItem item in DifficultyComboBox.Items)
             {
                 if (item.Content.ToString() == "Easy")
@@ -87,15 +96,17 @@ namespace ProjectWpf.Snack
             if (game.GameOver)
             {
                 gameTimer.Stop();
-                highScoresManager.AddScore(game.Score); // Save the score
-                GameOverOverlay.Visibility = Visibility.Visible; // Show the game over overlay
-                UpdateHighScoresUI(); // Update high scores display
+                wallMoveTimer.Stop(); 
+                highScoresManager.AddScore(game.Score); 
+                GameOverOverlay.Visibility = Visibility.Visible; 
+                UpdateHighScoresUI();
                 return;
             }
 
             game.Update();
             UpdateUI();
         }
+
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
@@ -151,6 +162,7 @@ namespace ProjectWpf.Snack
             if (DifficultyComboBox.SelectedItem is ComboBoxItem selectedItem)
             {
                 string selectedDifficulty = (string)selectedItem.Content;
+                game.SetDifficulty(selectedDifficulty);
 
                 switch (selectedDifficulty)
                 {
@@ -167,37 +179,35 @@ namespace ProjectWpf.Snack
             }
         }
 
+
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             if (game.GameOver)
             {
-                game.ResetGame(); // Restart the game if it was over
-                GameOverOverlay.Visibility = Visibility.Collapsed; // Hide the game over overlay
-                StartButton.Visibility = Visibility.Collapsed; // Hide the start button
-                ResetButton.Visibility = Visibility.Visible; // Show the reset button
+                game.ResetGame(); 
+                GameOverOverlay.Visibility = Visibility.Collapsed; 
+                StartButton.Visibility = Visibility.Collapsed; 
+                ResetButton.Visibility = Visibility.Visible; 
             }
             else
             {
-                StartButton.Visibility = Visibility.Collapsed; // Hide the start button
-                ResetButton.Visibility = Visibility.Visible; // Show the reset button
-                DifficultyComboBox.IsEnabled = false; // Disable difficulty selection during game
-                gameTimer.Start(); // Start the game timer
+                StartButton.Visibility = Visibility.Collapsed; 
+                ResetButton.Visibility = Visibility.Visible; 
+                DifficultyComboBox.IsEnabled = false; 
+                gameTimer.Start(); 
+                wallMoveTimer.Start(); 
             }
         }
 
+
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            game.ResetGame(); // Restart the game
-            GameOverOverlay.Visibility = Visibility.Collapsed; // Hide the game over overlay
-            StartButton.Visibility = Visibility.Visible; // Show the start button
-            ResetButton.Visibility = Visibility.Collapsed; // Hide the reset button
-            DifficultyComboBox.IsEnabled = true; // Enable difficulty selection
+            game.ResetGame(); 
+            GameOverOverlay.Visibility = Visibility.Collapsed; 
+            StartButton.Visibility = Visibility.Visible; 
+            ResetButton.Visibility = Visibility.Collapsed;
+            DifficultyComboBox.IsEnabled = true; 
         }
 
-       /* private void ShowHighScoresButton_Click(object sender, RoutedEventArgs e)
-        {
-            string highScoresText = string.Join("\n", highScoresManager.HighScores.Select((score, index) => $"{index + 1}. {score}"));
-            MessageBox.Show(highScoresText, "High Scores");
-        }*/
     }
 }

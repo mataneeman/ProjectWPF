@@ -14,20 +14,30 @@
     <None Remove="assets\1687634.png" />
     <None Remove="assets\floppy-disk-solid.svg.png" />
     <None Remove="assets\pen-to-square-solid.svg.png" />
-    <None Remove="assets\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
     <None Remove="assets\tic-tac-toe-game.png" />
     <None Remove="assets\trash-solid.svg.png" />
     <None Remove="Brick Braker\1687634.png" />
     <None Remove="Brick Braker\arrow-left-solid.svg.png" />
     <None Remove="Home Page\1034785-200.png" />
+    <None Remove="Home Page\1500006-200.png" />
     <None Remove="Home Page\1560.png" />
     <None Remove="Home Page\1687634.png" />
     <None Remove="Home Page\201141227-neon-brick-wall-background-with-glowing-neon-lights-vector-illustration.jpg" />
     <None Remove="Home Page\3437694-200.png" />
+    <None Remove="Home Page\6168771.png" />
     <None Remove="Home Page\glowing-neon-line-tic-tac-toe-game-icon-isolated-vector-34119572.jpg" />
     <None Remove="Home Page\neon-light-group-line-icon-users-or-teamwork-sign-vector-35429906.jpg" />
     <None Remove="Home Page\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
     <None Remove="Home Page\to-do-list-neon-design-template-vector-40905379.jpg" />
+    <None Remove="Save Ball Game\Images\background.jpg" />
+    <None Remove="Save Ball Game\Images\ball1.png" />
+    <None Remove="Save Ball Game\Images\ball2.png" />
+    <None Remove="Save Ball Game\Images\ball3.png" />
+    <None Remove="Save Ball Game\Images\ball4.png" />
+    <None Remove="Save Ball Game\Images\ball5.png" />
+    <None Remove="Save Ball Game\Images\ball6.png" />
+    <None Remove="Save Ball Game\Images\ball7.png" />
+    <None Remove="Save Ball Game\Images\basket.png" />
     <None Remove="Snake\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
     <None Remove="Tic Tac Toe\1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg" />
     <None Remove="Tic Tac Toe\4047394_developer_development_object_oriented_programming_icon.png" />
@@ -56,7 +66,6 @@
     <Resource Include="assets\arrow-left-solid.svg.png" />
     <Resource Include="assets\1034785-200.png" />
     <Resource Include="assets\1560.png" />
-    <Resource Include="assets\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
     <Resource Include="assets\tic-tac-toe-game.png" />
     <Resource Include="assets\1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg" />
     <Resource Include="assets\74906.png" />
@@ -66,7 +75,18 @@
     <Resource Include="assets\plus-solid.svg.png" />
     <Resource Include="assets\trash-solid.svg.png" />
     <Resource Include="assets\user-plus-solid.svg.png" />
-    <Resource Include="Home Page\3437694-200.png" />
+    <Resource Include="assets\3437694-200.png" />
+    <Resource Include="assets\1500006-200.png" />
+    <Resource Include="assets\6168771.png" />
+    <Resource Include="Save Ball Game\Images\background.jpg" />
+    <Resource Include="Save Ball Game\Images\ball1.png" />
+    <Resource Include="Save Ball Game\Images\ball2.png" />
+    <Resource Include="Save Ball Game\Images\ball3.png" />
+    <Resource Include="Save Ball Game\Images\ball4.png" />
+    <Resource Include="Save Ball Game\Images\ball5.png" />
+    <Resource Include="Save Ball Game\Images\ball6.png" />
+    <Resource Include="Save Ball Game\Images\ball7.png" />
+    <Resource Include="Save Ball Game\Images\basket.png" />
   </ItemGroup>
 
 </Project>

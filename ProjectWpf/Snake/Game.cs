@@ -1,39 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Threading;
 
 namespace ProjectWpf.Snack
 {
     public enum Direction { Up, Down, Left, Right }
-    public enum CellState { Empty, Snake, Apple }
+    public enum CellState { Empty, Snake, Apple, Wall }
 
     internal class Game
     {
-        private Snack? snake; // Nullable declaration
-        private Apple? apple; // Nullable declaration
+        private Snack? snake; 
+        private Apple? apple; 
+        private List<Point> walls; 
         private int Width;
         private int Height;
         private Random random;
+        private DispatcherTimer wallChangeTimer; 
+        private int wallCount;
         public bool GameOver { get; private set; }
         public int Score { get; private set; }
-        private HighScoresManager highScoresManager;
 
         public Game(int width, int height)
         {
             this.Width = width;
             this.Height = height;
-            highScoresManager = new HighScoresManager();
-            random = new Random(); // Initialize Random
+            random = new Random(); 
+            walls = new List<Point>();
+            wallChangeTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(10) 
+            };
+            wallChangeTimer.Tick += (sender, e) => GenerateWalls();
             ResetGame();
         }
 
         public void ResetGame()
         {
-            snake = new Snack(Width / 2, Height / 2); // Initialize Snack
-            GenerateApple(); // Initialize Apple
+            snake = new Snack(Width / 2, Height / 2); 
+            GenerateApple(); 
+            GenerateWalls(); 
             Score = 0;
             GameOver = false;
         }
+
 
         public void Update()
         {
@@ -51,7 +61,7 @@ namespace ProjectWpf.Snack
             if (IsGameOver())
             {
                 GameOver = true;
-                highScoresManager.AddScore(Score); // Save the score when game is over
+                wallChangeTimer.Stop();
             }
         }
 
@@ -70,6 +80,8 @@ namespace ProjectWpf.Snack
                 return CellState.Snake;
             if (apple != null && apple.X == x && apple.Y == y)
                 return CellState.Apple;
+            if (walls.Any(w => w.X == x && w.Y == y))
+                return CellState.Wall;
             return CellState.Empty;
         }
 
@@ -80,8 +92,41 @@ namespace ProjectWpf.Snack
             do
             {
                 apple = new Apple(random.Next(Width), random.Next(Height));
-            } while (snake.Body.Any(p => p.X == apple.X && p.Y == apple.Y));
+            } while (snake.Body.Any(p => p.X == apple.X && p.Y == apple.Y) || walls.Any(w => w.X == apple.X && w.Y == apple.Y));
         }
+
+        public void GenerateWalls()
+        {
+            walls.Clear();
+
+            for (int i = 0; i < wallCount; i++)
+            {
+                Point wallPoint;
+                do
+                {
+                    wallPoint = new Point(random.Next(Width), random.Next(Height));
+                } while (walls.Contains(wallPoint) || (snake != null && snake.Body.Contains(wallPoint)));
+
+                walls.Add(wallPoint);
+            }
+        }
+        public void SetDifficulty(string difficulty)
+        {
+            switch (difficulty)
+            {
+                case "Easy":
+                    wallCount = 3;
+                    break;
+                case "Medium":
+                    wallCount = 5;
+                    break;
+                case "Hard":
+                    wallCount = 8;
+                    break;
+            }
+            GenerateWalls();
+        }
+
 
         private bool IsGameOver()
         {
@@ -99,7 +144,11 @@ namespace ProjectWpf.Snack
                 }
             }
 
-            return outOfBounds || collidesWithBody;
+            bool collidesWithWalls = walls.Any(wall => wall.X == snake.Head.X && wall.Y == snake.Head.Y);
+
+
+            return outOfBounds || collidesWithBody || collidesWithWalls;
         }
+
     }
 }

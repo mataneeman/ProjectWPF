@@ -17,4 +17,5 @@ namespace ProjectWpf.Snack
             Y = y;
         }
     }
+
 }

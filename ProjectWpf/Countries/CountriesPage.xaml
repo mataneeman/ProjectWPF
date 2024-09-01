@@ -47,7 +47,18 @@
                BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
                Margin="10,0,10,0" Padding="10" />
         </Grid>
-
+        <Grid Height="40" Background="White" VerticalAlignment="Bottom">
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
+            </Grid.Effect>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Copyright © 2024. All rights reserved."
+             Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+             BorderThickness="0" Background="Transparent" Foreground="Gray" FontWeight="Bold" Margin="10" Padding="1" FontSize="12"/>
+        </Grid>
         <!-- Main Content Section -->
         <Grid Margin="20,70,20,20">
             <!-- Added top margin to prevent overlap with header -->
@@ -57,7 +68,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Image Section -->
-            <Image x:Name="image" Grid.Column="0" Height="250" Margin="10" VerticalAlignment="Center" Width="250"  Stretch="Fill"/>
+            <Image x:Name="image" Grid.Column="0" Height="250" Margin="10" VerticalAlignment="Center" Source="/assets/3437694-200.png" Width="250"  Stretch="Fill"/>
 
             <!-- Text Section -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
