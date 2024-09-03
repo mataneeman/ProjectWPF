@@ -36,9 +36,9 @@ namespace ProjectWpf.Todo_List
             {
                 if (sender is TextBlock textBlock && textBlock.DataContext is TaskModel task)
                 {
-                    var parent = (FrameworkElement)textBlock.Parent;
-                    var editTextBox = (TextBox)parent.FindName("editTaskDescription");
-                    var btnSave = (Button)parent.FindName("btnSave");
+                    FrameworkElement parent = (FrameworkElement)textBlock.Parent;
+                    TextBox editTextBox = (TextBox)parent.FindName("editTaskDescription");
+                    Button btnSave = (Button)parent.FindName("btnSave");
 
                     textBlock.Visibility = Visibility.Collapsed;
                     editTextBox.Visibility = Visibility.Visible;
@@ -53,10 +53,10 @@ namespace ProjectWpf.Todo_List
         {
             if (sender is Button editButton)
             {
-                var parent = (FrameworkElement)editButton.Parent;
-                var textBlock = (TextBlock)parent.FindName("txtTaskDescription");
-                var editTextBox = (TextBox)parent.FindName("editTaskDescription");
-                var btnSave = (Button)parent.FindName("btnSave");
+                FrameworkElement parent = (FrameworkElement)editButton.Parent;
+                TextBlock textBlock = (TextBlock)parent.FindName("txtTaskDescription");
+                TextBox editTextBox = (TextBox)parent.FindName("editTaskDescription");
+                Button btnSave = (Button)parent.FindName("btnSave");
 
                 if (textBlock != null && editTextBox != null && btnSave != null)
                 {
@@ -73,9 +73,9 @@ namespace ProjectWpf.Todo_List
         {
             if (sender is Button btnSave && btnSave.DataContext is TaskModel task)
             {
-                var parent = (FrameworkElement)btnSave.Parent;
-                var editTextBox = (TextBox)parent.FindName("editTaskDescription");
-                var textBlock = (TextBlock)parent.FindName("txtTaskDescription");
+                FrameworkElement parent = (FrameworkElement)btnSave.Parent;
+                TextBox editTextBox = (TextBox)parent.FindName("editTaskDescription");
+                TextBlock textBlock = (TextBlock)parent.FindName("txtTaskDescription");
 
                 editTextBox.Visibility = Visibility.Collapsed;
                 btnSave.Visibility = Visibility.Collapsed;

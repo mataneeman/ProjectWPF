@@ -33,7 +33,7 @@
             </StackPanel>
             <Button x:Name="addUser" Width="100" Height="30" Margin="10,10,0,0" Click="AddUser_Click" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/User Management/user-plus-solid.svg.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                    <Image Source="/assets/user-plus-solid.svg.png" Width="20" Height="20" Margin="0,0,5,0"/>
                     <TextBlock Text="Add User" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>

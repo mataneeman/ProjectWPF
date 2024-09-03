@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,6 +16,7 @@ namespace ProjectWpf.User_Management
         private ListCollectionView _usersCollectionView;
         private string _lastSortProperty = "";
         private ListSortDirection _lastSortDirection = ListSortDirection.Ascending;
+        private const string FileName = "users.json";
 
         public UserManagement()
         {
@@ -23,7 +25,7 @@ namespace ProjectWpf.User_Management
             DataContext = this;
 
             // Ensure lvUsers.ItemsSource is not null before casting
-            var collectionView = CollectionViewSource.GetDefaultView(lvUsers.ItemsSource) as ListCollectionView;
+            ListCollectionView collectionView = CollectionViewSource.GetDefaultView(lvUsers.ItemsSource) as ListCollectionView;
             if (collectionView != null)
             {
                 _usersCollectionView = collectionView;
@@ -36,11 +38,26 @@ namespace ProjectWpf.User_Management
 
         private void InitializeData()
         {
-            _users.Add(new User("Ron Doe", new DateTime(2023, 10, 10), "john.doe@email.com", "Admin"));
-            _users.Add(new User("Lane Smith", new DateTime(2021, 10, 12), "jane.smith@email.com", "User"));
-            _users.Add(new User("Michael Johnson", new DateTime(2013, 10, 15), "michael.johnson@email.com", "Manager"));
+            if (File.Exists(FileName))
+            {
+                string json = File.ReadAllText(FileName);
+                _users = JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
+            }
+            else
+            {
+                // Add default users if file does not exist
+                _users.Add(new User("Ron Doe", new DateTime(2023, 10, 10), "john.doe@email.com", "Admin"));
+                _users.Add(new User("Lane Smith", new DateTime(2021, 10, 12), "jane.smith@email.com", "User"));
+                _users.Add(new User("Michael Johnson", new DateTime(2013, 10, 15), "michael.johnson@email.com", "Manager"));
+            }
 
             lvUsers.ItemsSource = _users;
+        }
+
+        private void SaveData()
+        {
+            string json = JsonSerializer.Serialize(_users, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(FileName, json);
         }
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
@@ -48,10 +65,11 @@ namespace ProjectWpf.User_Management
             if (_users != null)
             {
                 AddUser addUserWindow = new AddUser(_users);
-                addUserWindow.ShowDialog();
-                if (addUserWindow.DialogResult == true)
+                bool? result = addUserWindow.ShowDialog();
+                if (result == true)
                 {
                     lvUsers.Items.Refresh();
+                    SaveData(); // Save data after adding a user
                 }
             }
             else
@@ -64,9 +82,13 @@ namespace ProjectWpf.User_Management
         {
             if (e.OriginalSource is Button button && button.DataContext is User userToDelete)
             {
-                _users?.Remove(userToDelete);
-                lvUsers.Items.Refresh();
-                MessageBox.Show("User deleted.");
+                if (_users != null)
+                {
+                    _users.Remove(userToDelete);
+                    lvUsers.Items.Refresh();
+                    SaveData(); // Save data after deleting a user
+                    MessageBox.Show("User deleted.");
+                }
             }
         }
 
@@ -79,6 +101,7 @@ namespace ProjectWpf.User_Management
                 if (result == true)
                 {
                     lvUsers.Items.Refresh();
+                    SaveData(); // Save data after editing a user
                 }
             }
         }
@@ -122,7 +145,7 @@ namespace ProjectWpf.User_Management
                             _usersCollectionView.SortDescriptions.Add(new SortDescription("Email", _lastSortDirection));
                             break;
                         case "Role":
-                            _usersCollectionView.SortDescriptions.Add(new SortDescription("Role",_lastSortDirection));
+                            _usersCollectionView.SortDescriptions.Add(new SortDescription("Role", _lastSortDirection));
                             break;
                     }
                 }

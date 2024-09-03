@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using UserManagement;
@@ -23,7 +22,6 @@ namespace ProjectWpf.User_Management
             string email = txtEmail.Text.Trim();
             string role = ((ComboBoxItem)cmbRole.SelectedItem)?.Content?.ToString() ?? "DefaultRole";
 
-            
             if (string.IsNullOrWhiteSpace(name))
             {
                 MessageBox.Show("Name is required.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -36,9 +34,6 @@ namespace ProjectWpf.User_Management
                 return;
             }
 
-            
-
-           
             User newUser = new User(name, startDate, email, role);
             _users.Add(newUser);
 

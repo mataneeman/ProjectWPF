@@ -20,8 +20,8 @@ namespace ProjectWpf.Brick_Braker
 
     public class PowerUp : UserControl
     {
-        private Polygon _diamond;
-        private Image _coinImage;
+        private Polygon? _diamond;
+        private Image? _coinImage;
         public PowerUpType Type { get; }
 
         private DispatcherTimer _disappearTimer;

@@ -10,7 +10,7 @@ namespace ProjectWpf.Todo_List
 
         public static void SaveTasks(ObservableCollection<TaskModel> tasks)
         {
-            var options = new JsonSerializerOptions
+            JsonSerializerOptions options = new JsonSerializerOptions
             {
                 WriteIndented = true
             };
