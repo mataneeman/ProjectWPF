@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Media.Imaging;
+using UserManagement;
 
 namespace ProjectWpf.Brick_Braker
 {
@@ -12,12 +14,14 @@ namespace ProjectWpf.Brick_Braker
         SpeedReduction,
         PaddleIncrease,
         ExtraBlocks,
-        Shield
+        Shield,
+        Coin // הוסף סוג חדש של תוסף עבור מטבע
     }
 
     public class PowerUp : UserControl
     {
         private Polygon _diamond;
+        private Image _coinImage;
         public PowerUpType Type { get; }
 
         private DispatcherTimer _disappearTimer;
@@ -26,20 +30,33 @@ namespace ProjectWpf.Brick_Braker
         {
             Type = type;
 
-            _diamond = new Polygon
+            if (type == PowerUpType.Coin)
             {
-                Points = new PointCollection
+                _coinImage = new Image
                 {
-                  new Point(10, 0), // Top vertex
-                  new Point(20, 10), // Right vertex
-                  new Point(10, 20), // Bottom vertex
-                  new Point(0, 10)  // Left vertex
-                },
-                Fill = GetFillBrushForType(type),
-                Stroke = Brushes.Transparent
-            };
+                    Width = 25,
+                    Height = 25,
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Brick Braker/Resources/coin.png", UriKind.RelativeOrAbsolute))
+                };
+                this.Content = _coinImage;
+            }
+            else
+            {
+                _diamond = new Polygon
+                {
+                    Points = new PointCollection
+                    {
+                        new Point(10, 0), // Top vertex
+                        new Point(20, 10), // Right vertex
+                        new Point(10, 20), // Bottom vertex
+                        new Point(0, 10)  // Left vertex
+                    },
+                    Fill = GetFillBrushForType(type),
+                    Stroke = Brushes.Transparent
+                };
+                this.Content = _diamond;
+            }
 
-            this.Content = _diamond;
             this.Width = 25;
             this.Height = 25;
 
@@ -51,7 +68,6 @@ namespace ProjectWpf.Brick_Braker
             _disappearTimer.Tick += DisappearTimer_Tick;
             _disappearTimer.Start();
         }
-
 
         private Brush GetFillBrushForType(PowerUpType type)
         {
@@ -65,12 +81,12 @@ namespace ProjectWpf.Brick_Braker
                     return Brushes.Orange;
                 case PowerUpType.Shield:
                     return Brushes.Red;  // צבע עבור התוסף Shield
+                case PowerUpType.Coin:
+                    return Brushes.Gold; // צבע עבור המטבע (למרות שלא בשימוש כי יש תמונה)
                 default:
                     return Brushes.Transparent; // אם סוג לא מוגדר, השתמש בצבע שקוף
             }
         }
-
-
 
         private void DisappearTimer_Tick(object sender, EventArgs e)
         {

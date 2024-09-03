@@ -73,7 +73,7 @@
             <!-- Text Section -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
                 <TextBlock x:Name="countries" Text="Countries" TextWrapping="Wrap" FontSize="24" FontWeight="Bold" Foreground="White"/>
-                <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Foreground="White" Margin="0,10,0,20"/>
+                <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Foreground="White" Margin="0,10,0,20"><Run Text="Welcome to the Countries application. This WPF app displays detailed information about countries using data from the REST Countries API."/><LineBreak/><Run/><LineBreak/><Run Text="Key Features:"/><LineBreak/><Run Text="Search and Filter: Find countries by name and filter by region."/><LineBreak/><Run Text="Data Display: View details including name, region, population, capital cities, and flags."/><LineBreak/><Run Text="Responsive Design: The interface adjusts to different window sizes."/><LineBreak/><Run Text="Enjoy exploring country data with an easy-to-use interface!"/></TextBlock>
                 <Button x:Name="goToCountries" Content="Go to Countries" Padding="5" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1"  FontSize="16" FontWeight="Bold" Cursor="Hand" Click="goToCountries_Click"/>
             </StackPanel>
         </Grid>

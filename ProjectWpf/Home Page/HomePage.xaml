@@ -37,7 +37,7 @@
         </StackPanel>
 
         <!-- Game Selection Section -->
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,130,20,70">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20,130,20,70">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -47,7 +47,7 @@
 
             <!-- Top Row of Images -->
             <UniformGrid Grid.Row="0" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top" >
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20">
                     <Image x:Name="TicTacToe" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"
                            Source="/assets/tic-tac-toe-game.png" 
                            Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="TicTacToe_Click" Stretch="UniformToFill">
@@ -80,7 +80,7 @@
 
             <!-- Second Row of Images -->
             <UniformGrid Grid.Row="1" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top" >
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
                     <Image x:Name="TodoList" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"
                            Source="/assets/1560.png" 
                            Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="TodoList_Click" Stretch="UniformToFill">
@@ -112,7 +112,7 @@
 
             <!-- Third Row of Images -->
             <UniformGrid Grid.Row="2" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
                     <Image x:Name="MemoryGame" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" Source="/assets/6168771.png"
                            Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="MemoryGame_Click"  Stretch="UniformToFill">
                         <Image.Effect>
@@ -122,7 +122,8 @@
                     <TextBlock Text="Memory Game" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image x:Name="SaveBallGame" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" Source="/assets/arrow-left-solid.svg.png"
+                    <Image x:Name="SaveBallGame" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" Source="/assets/858633.png"
+                           
                            Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="SaveBallGame_Click" Stretch="UniformToFill">
                         <Image.Effect>
                             <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>

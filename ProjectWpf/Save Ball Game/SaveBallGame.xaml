@@ -5,33 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectWpf.Save_Ball_Game"
         mc:Ignorable="d"
-        Title="Save Ball Game" Height="500" Width="800"
-        KeyDown="Window_KeyDown"
-        KeyUp="Window_KeyUp">
+        Title="Save Ball Game" Height="500" Width="800">
 
     <Grid Background="#F2F2F2">
         <Border Background="#2A9D8F" Height="60" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1"/>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Text="Brick Braker" FontSize="24" FontWeight="Bold" Foreground="Black" Margin="10"/>
+            <TextBlock Text="Save Ball Game" FontSize="22" FontWeight="Bold" Foreground="Black" Margin="10"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                <TextBlock Text="Score: " FontSize="24" Foreground="Black" FontWeight="Bold" Margin="10"/>
-                <TextBlock x:Name="scoreText" Text="0" FontSize="24" Foreground="Black" FontWeight="Bold" Margin="10"/>
+                <TextBlock Text="Score: " FontSize="20" Foreground="Black" FontWeight="Bold" Margin="10"/>
+                <TextBlock x:Name="scoreText" Text="0" FontSize="20" Foreground="Black" FontWeight="Bold" Margin="10"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Missed: " FontSize="24" Foreground="Black" FontWeight="Bold" Margin="10"/>
-                <TextBlock x:Name="missedText" Text="0" FontSize="24" Foreground="Black" FontWeight="Bold" Margin="10"/>
+                <TextBlock Text="Missed: " FontSize="20" Foreground="Black" FontWeight="Bold" Margin="10"/>
+                <TextBlock x:Name="missedText" Text="0" FontSize="20" Foreground="Black" FontWeight="Bold" Margin="10"/>
             </StackPanel>
         </StackPanel>
 
         <Viewbox Grid.Row="1" Stretch="Uniform" Margin="20">
             <Grid>
                 <Border BorderBrush="#2A9D8F" BorderThickness="2" Background="White">
-                    <Canvas x:Name="MyCanvas" Width="400" Height="400" MouseMove="Canvas_MouseMove">
-                        <!-- Player (basket) will be added programmatically -->
-                    </Canvas>
+                    <Canvas x:Name="MyCanvas" Width="400" Height="400" MouseMove="Canvas_MouseMove"/>
                 </Border>
                 <Border x:Name="GameOverOverlay" Background="#80000000" Visibility="Collapsed">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" Margin="10">
@@ -43,9 +39,15 @@
             </Grid>
         </Viewbox>
 
-        <!-- Start Button -->
         <Button x:Name="StartButton" Content="Start" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="StartButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20" Cursor="Hand"/>
 
-        <!-- Legend -->
+        <!-- Lives -->
+        <StackPanel x:Name="LivesPanel" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="15">
+            <Image x:Name="Heart1" Source="pack://application:,,,/Save Ball Game/Images/red_heart.png" Width="25" Height="25" Margin="2"/>
+            <Image x:Name="Heart2" Source="pack://application:,,,/Save Ball Game/Images/red_heart.png" Width="25" Height="25" Margin="2"/>
+            <Image x:Name="Heart3" Source="pack://application:,,,/Save Ball Game/Images/red_heart.png" Width="25" Height="25" Margin="2"/>
+            <Image x:Name="Heart4" Source="pack://application:,,,/Save Ball Game/Images/red_heart.png" Width="25" Height="25" Margin="2"/>
+            <Image x:Name="Heart5" Source="pack://application:,,,/Save Ball Game/Images/red_heart.png" Width="25" Height="25" Margin="2"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -100,7 +100,7 @@ namespace ProjectWpf.Memory_Game_Merage
 
 
 
-        private void CheckMatch()
+        private async void CheckMatch()
         {
             if ((int)_firstChoice.Tag == (int)_secondChoice.Tag)
             {
@@ -108,58 +108,35 @@ namespace ProjectWpf.Memory_Game_Merage
                 ScoreChanged?.Invoke(_currentPlayer.Score);
                 _pairsFound++;
 
-                System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer
+                await Task.Delay(500);
+                _firstChoice.Visibility = Visibility.Collapsed;
+                _secondChoice.Visibility = Visibility.Collapsed;
+                _firstChoice = null;
+                _secondChoice = null;
+
+                if (_pairsFound == _totalPairs)
                 {
-                    Interval = TimeSpan.FromSeconds(0.5)
-                };
-                timer.Tick += (s, e) =>
+                    IsGameOver = true;
+                    _isDraw = _player1.Score == (_player2?.Score ?? 0);
+                    GameOver?.Invoke();
+                }
+                else if (_isTwoPlayersMode)
                 {
-                    _firstChoice.Visibility = Visibility.Collapsed;
-                    _secondChoice.Visibility = Visibility.Collapsed;
-
-                    _firstChoice = null;
-                    _secondChoice = null;
-                    timer.Stop();
-
-                    if (_pairsFound == _totalPairs)
-                    {
-                        IsGameOver = true;
-
-                        _isDraw = _player1.Score == (_player2?.Score ?? 0);
-
-                        GameOver?.Invoke();
-                    }
-                    else
-                    {
-                        if (_isTwoPlayersMode)
-                        {
-                            SwitchPlayer();
-                        }
-                    }
-                };
-                timer.Start();
+                    SwitchPlayer();
+                }
             }
             else
             {
-                // Not matching cards
-                System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer
-                {
-                    Interval = TimeSpan.FromSeconds(1)
-                };
-                timer.Tick += (s, e) =>
-                {
-                    _firstChoice.Content = GetBackShape();
-                    _secondChoice.Content = GetBackShape();
-                    _firstChoice = null;
-                    _secondChoice = null;
-                    timer.Stop();
+                await Task.Delay(1000);
+                _firstChoice.Content = GetBackShape();
+                _secondChoice.Content = GetBackShape();
+                _firstChoice = null;
+                _secondChoice = null;
 
-                    if (_isTwoPlayersMode)
-                    {
-                        SwitchPlayer();
-                    }
-                };
-                timer.Start();
+                if (_isTwoPlayersMode)
+                {
+                    SwitchPlayer();
+                }
             }
         }
 

@@ -27,12 +27,11 @@ namespace ProjectWpf
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // Adjust the window size if the page is inside a window
-            var window = Window.GetWindow(this);
+            Window window = Window.GetWindow(this);
             if (window != null)
             {
-                window.Width = 900; // Set to desired width
-                window.Height = 600; // Set to desired height
+                window.Width = 900; 
+                window.Height = 650; 
             }
         }
         private void Image_MouseEnter(object sender, MouseEventArgs e)

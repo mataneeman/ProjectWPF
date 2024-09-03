@@ -27,7 +27,7 @@ namespace ProjectWpf.Brick_Braker
         private Dictionary<PowerUp, DateTime> _powerUpExpiration = new Dictionary<PowerUp, DateTime>();
         private const double PowerUpDisplayDuration = 12;
         private int _remainingShieldTime;
-
+        public GameViewModel gameViewModel = new GameViewModel();
 
 
         public BrickBrakerGame()
@@ -344,11 +344,19 @@ namespace ProjectWpf.Brick_Braker
                 case PowerUpType.ExtraBlocks:
                     AddExtraRowOfBricks();
                     break;
+                case PowerUpType.Coin:
+                    AddCoinScore();
+                    break;
 
-                    // Remove case for Explosion
+
             }
         }
+        public void AddCoinScore()
+        {
+            int newScore = _viewModel.Score + 5;
+            UpdateScore(newScore);
 
+        }
         private void ActivateShield()
         {
             if (_paddle != null)
@@ -643,16 +651,24 @@ namespace ProjectWpf.Brick_Braker
             {
                 GameCanvas.UpdateLayout();
 
-                // מקם את הכדור מעל הפדל
+                // Position the ball above the paddle
                 double paddleLeft = Canvas.GetLeft(_paddle);
                 double paddleTop = Canvas.GetTop(_paddle);
+                double paddleWidth = _paddle.Width;
+                double ballWidth = _ball.Width;
 
-                double ballLeft = paddleLeft + (_paddle.Width - _ball.Width) / 2;
-                double ballTop = paddleTop - _ball.Height;
+                // Center the ball horizontally above the paddle and slightly above it vertically
+                double ballLeft = paddleLeft + (paddleWidth - ballWidth) / 2;
+                double ballTop = paddleTop - _ball.Height - 5; // Slightly above the paddle
 
                 Canvas.SetLeft(_ball, ballLeft);
                 Canvas.SetTop(_ball, ballTop);
+
+                // Reset the ball's velocity to the initial state
+                _ballVelocity = new Vector(3, -3); // Adjust as necessary for your game's logic
             }
         }
+
+
     }
 }

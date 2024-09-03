@@ -12,12 +12,14 @@
     <None Remove="assets\1034785-200.png" />
     <None Remove="assets\1560.png" />
     <None Remove="assets\1687634.png" />
+    <None Remove="assets\858633.png" />
     <None Remove="assets\floppy-disk-solid.svg.png" />
     <None Remove="assets\pen-to-square-solid.svg.png" />
     <None Remove="assets\tic-tac-toe-game.png" />
     <None Remove="assets\trash-solid.svg.png" />
     <None Remove="Brick Braker\1687634.png" />
     <None Remove="Brick Braker\arrow-left-solid.svg.png" />
+    <None Remove="Brick Braker\coin.png" />
     <None Remove="Home Page\1034785-200.png" />
     <None Remove="Home Page\1500006-200.png" />
     <None Remove="Home Page\1560.png" />
@@ -38,6 +40,11 @@
     <None Remove="Save Ball Game\Images\ball6.png" />
     <None Remove="Save Ball Game\Images\ball7.png" />
     <None Remove="Save Ball Game\Images\basket.png" />
+    <None Remove="Save Ball Game\Images\bomb.png" />
+    <None Remove="Save Ball Game\Images\coin.png" />
+    <None Remove="Save Ball Game\Images\red_heart.png" />
+    <None Remove="Save Ball Game\Images\virus.png" />
+    <None Remove="Save Ball Game\Images\white_heart.png" />
     <None Remove="Snake\pngtree-portable-snake-game-lader-play-png-image_5192857.png" />
     <None Remove="Tic Tac Toe\1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg" />
     <None Remove="Tic Tac Toe\4047394_developer_development_object_oriented_programming_icon.png" />
@@ -63,6 +70,7 @@
 
   <ItemGroup>
     <Resource Include="assets\1687634.png" />
+    <Resource Include="assets\858633.png" />
     <Resource Include="assets\arrow-left-solid.svg.png" />
     <Resource Include="assets\1034785-200.png" />
     <Resource Include="assets\1560.png" />
@@ -78,6 +86,7 @@
     <Resource Include="assets\3437694-200.png" />
     <Resource Include="assets\1500006-200.png" />
     <Resource Include="assets\6168771.png" />
+    <Resource Include="Brick Braker\Resources\coin.png" />
     <Resource Include="Save Ball Game\Images\background.jpg" />
     <Resource Include="Save Ball Game\Images\ball1.png" />
     <Resource Include="Save Ball Game\Images\ball2.png" />
@@ -87,6 +96,11 @@
     <Resource Include="Save Ball Game\Images\ball6.png" />
     <Resource Include="Save Ball Game\Images\ball7.png" />
     <Resource Include="Save Ball Game\Images\basket.png" />
+    <Resource Include="Save Ball Game\Images\bomb.png" />
+    <Resource Include="Save Ball Game\Images\coin.png" />
+    <Resource Include="Save Ball Game\Images\red_heart.png" />
+    <Resource Include="Save Ball Game\Images\virus.png" />
+    <Resource Include="Save Ball Game\Images\white_heart.png" />
   </ItemGroup>
 
 </Project>

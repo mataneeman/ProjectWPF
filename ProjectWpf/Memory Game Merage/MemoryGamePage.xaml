@@ -73,7 +73,7 @@
             <!-- Text Section -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
                 <TextBlock x:Name="MemoryGame" Text="Memory Game" TextWrapping="Wrap" FontSize="24" FontWeight="Bold" Foreground="White"/>
-                <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Text="Welcome to the Snack Game. This project is built using WPF (Windows Presentation Foundation) and C#. It offers a fun and interactive game experience with easy-to-understand gameplay and controls." Foreground="White" Margin="0,10,0,20"/>
+                <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Foreground="White" Margin="0,10,0,20" Text="Welcome to the Memory Game! In this game, you’ll challenge your memory by matching cards with identical images. Choose cards one by one, and the goal is to find matching pairs. Use strategy and remember the locations of the cards to succeed! The game can be even more challenging if you’re playing with another player. Good luck and have fun!"/>
                 <Button x:Name="MemoryGamePlay" Content="Play Game" Padding="5" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="MemoryGame_Click" FontSize="16" FontWeight="Bold" Cursor="Hand"/>
             </StackPanel>
         </Grid>
