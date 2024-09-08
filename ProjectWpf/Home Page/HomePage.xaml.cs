@@ -31,14 +31,14 @@ namespace ProjectWpf
             if (window != null)
             {
                 window.Width = 900; 
-                window.Height = 650; 
+                window.Height = 780; 
             }
         }
         private void Image_MouseEnter(object sender, MouseEventArgs e)
         {
             if (sender is Image image)
             {
-                image.Opacity = 0.7; 
+                image.Opacity = 0.3; 
             }
         }
 
@@ -46,7 +46,7 @@ namespace ProjectWpf
         {
             if (sender is Image image)
             {
-                image.Opacity = 1.0; 
+                image.Opacity = 1.5; 
             }
         }
         private void TicTacToe_Click(object sender, RoutedEventArgs e)
@@ -82,6 +82,10 @@ namespace ProjectWpf
         private void SaveBallGame_Click(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new Save_Ball_Game.SaveBallPage());
+        }
+        private void FlappyBird_click(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Flappy_Bird.FlappyBirdPage());
         }
     }
 }

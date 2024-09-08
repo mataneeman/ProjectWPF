@@ -2,20 +2,20 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MemoryGame" Height="450" Width="800">
-    <Grid Background="#F2F2F2">
-        <Border x:Name="Header" Background="#2A9D8F" Height="60" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1">
-            <TextBlock Text="Memory Game" FontSize="24" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+    <Grid Background="#1E1E1E">
+        <Border x:Name="Header" Background="#2A2A2A" Height="60" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="10">
+            <TextBlock Text="Memory Game" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"/>
         </Border>
 
         <Grid x:Name="EntranceScreen" Visibility="Visible" Margin="0,60,0,0">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="SinglePlayerButton" Content="Single Player" FontSize="16" Padding="10" Width="150" Height="50" Margin="10" Background="#2A9D8F" Foreground="White" BorderBrush="#264653" BorderThickness="1" Click="SinglePlayerButton_Click"/>
-                <Button x:Name="TwoPlayersButton" Content="Two Players" FontSize="16" Padding="10" Width="150" Height="50" Margin="10" Background="#2A9D8F" Foreground="White" BorderBrush="#264653" BorderThickness="1" Click="TwoPlayersButton_Click"/>
+                <Button x:Name="SinglePlayerButton" Content="Single Player" FontSize="16" Padding="10" Width="150" Height="50" Margin="10" Background="White" Foreground="Black" FontWeight="Black" BorderBrush="#264653" BorderThickness="1" Click="SinglePlayerButton_Click"/>
+                <Button x:Name="TwoPlayersButton" Content="Two Players" FontSize="16" Padding="10" Width="150" Height="50" Margin="10" Background="White" Foreground="Black" FontWeight="Black" BorderBrush="#264653" BorderThickness="1" Click="TwoPlayersButton_Click"/>
             </StackPanel>
         </Grid>
 
         <Grid x:Name="GameScreen" Visibility="Collapsed" Margin="0,60,0,0">
-            <Border x:Name="Scoreboard" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180" Margin="10,120,0,0" Visibility="Collapsed" Background="White" BorderBrush="#2A9D8F" BorderThickness="1" Padding="10">
+            <Border x:Name="Scoreboard" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180" Margin="10,120,0,0" Visibility="Collapsed" Background="White" BorderBrush="#2A2A2A" BorderThickness="1" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -24,9 +24,9 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Scores" FontSize="18" FontWeight="Bold" Foreground="#2A9D8F" Margin="0,0,0,10" HorizontalAlignment="Left" Grid.Row="0"/>
-                    <TextBlock x:Name="Player1ScoreTextBlock" Text="Player 1: 0" FontSize="16" Foreground="Blue" Grid.Row="1"/>
-                    <TextBlock x:Name="Player2ScoreTextBlock" Text="Player 2: 0" FontSize="16" Foreground="Red" Grid.Row="2"/>
+                    <TextBlock Text="Scores" FontSize="18" FontWeight="Bold" Foreground="Black" Margin="0,0,0,10" HorizontalAlignment="Left" Grid.Row="0"/>
+                    <TextBlock x:Name="Player1ScoreTextBlock" Text="Player 1: 0" FontSize="16" Foreground="Black" Grid.Row="1"/>
+                    <TextBlock x:Name="Player2ScoreTextBlock" Text="Player 2: 0" FontSize="16" Foreground="Black" Grid.Row="2"/>
                     <Button x:Name="GoBackButton" Content="Back to Menu" FontSize="16" Width="130" Height="50" Margin="0,30,0,0" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="BackButton_Click" Grid.Row="5" Cursor="Hand"/>
                 </Grid>
             </Border>
@@ -37,7 +37,7 @@
                    FontSize="16" 
                    FontWeight="Bold" />
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,10,0">
-                <TextBlock Text="Difficulty Level" FontSize="16" Foreground="Black" Margin="10"/>
+                <TextBlock Text="Difficulty Level" FontSize="16" Foreground="White" FontWeight="Bold" Margin="10"/>
                 <ComboBox x:Name="DifficultyComboBox" SelectionChanged="DifficultyComboBox_SelectionChanged" FontSize="16" Margin="10">
                     <ComboBoxItem Content="Easy" IsSelected="True"/>
                     <ComboBoxItem Content="Medium"/>
@@ -47,7 +47,7 @@
 
             <Viewbox Stretch="Uniform" Margin="20">
                 <Grid>
-                    <Border BorderBrush="#2A9D8F" BorderThickness="2" Background="White">
+                    <Border BorderBrush="#2A2A2A" BorderThickness="2" Background="White">
                         <Canvas x:Name="GameCanvas" Width="400" Height="400"/>
                     </Border>
                     <Border x:Name="GameOverOverlay" Background="#80000000" Visibility="Collapsed">

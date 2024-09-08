@@ -8,9 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TodoListPage">
 
-    <Grid Background="#FF4CB7A6">
+    <Grid Background="#1E1E1E">
         <!-- Header Section -->
-        <Grid Height="60" Background="White" VerticalAlignment="Top">
+        <Grid Height="40" Background="#2A2A2A" VerticalAlignment="Top" Margin="10">
             <Grid.Effect>
                 <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
             </Grid.Effect>
@@ -22,32 +22,23 @@
             </Grid.ColumnDefinitions>
 
             <Button x:Name="GoBack" Grid.Column="0" VerticalAlignment="Center"
-         BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
-         Margin="10,0,0,0" Padding="10" Click="GoBack_Click" Cursor="Hand">
+                    BorderThickness="0" Background="Transparent" Foreground="White" FontWeight="Bold"
+                    Padding="10"  Click="GoBack_Click" Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
-                    <!-- הוספת ה-SVG כאן -->
-                    <Image Source="/assets/arrow-left-solid.svg.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                    <TextBlock Text="Matan Ne'eman" VerticalAlignment="Center"/>
+                    <Image Source="/assets/arrow-left-solid.png" />
                 </StackPanel>
                 <Button.ToolTip>
                     <ToolTip Content="Go Back" />
                 </Button.ToolTip>
             </Button>
 
-            <Grid Grid.Column="1" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Image x:Name="image1" Height="42" Margin="0,0,10,0" Width="38" Source="/assets/74906.png"/>
-                    <Image x:Name="image1_Copy" Height="42" Margin="0,0,10,0" Width="38" Source="/assets/1000_F_479419476_1cKepeoZiEGEmR3hRbzvwUocndBILcOw.jpg"/>
-                    <Image x:Name="image1_Copy1" Height="42" Margin="0,0,10,0" Width="38" Source="/assets/oop-icon-free-vector.jpg"/>
-                </StackPanel>
-            </Grid>
-
-            <!-- Label aligned to the right -->
             <Label x:Name="Project" Content="Project By WPF" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"
-                   BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
+                   BorderThickness="0" Background="Transparent" Foreground="White" FontWeight="Bold"
                    Margin="10,0,10,0" Padding="10" />
         </Grid>
-        <Grid Height="40" Background="White" VerticalAlignment="Bottom">
+
+        <!-- Footer Section -->
+        <Grid Height="40" Background="#2A2A2A" VerticalAlignment="Bottom" Margin="10">
             <Grid.Effect>
                 <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
             </Grid.Effect>
@@ -56,26 +47,29 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Label Content="Copyright © 2024. All rights reserved."
-             Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
-             BorderThickness="0" Background="Transparent" Foreground="Gray" FontWeight="Bold" Margin="10" Padding="1" FontSize="12"/>
+                   Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   BorderThickness="0" Background="Transparent" Foreground="Gray" FontWeight="Bold" Margin="10" Padding="1" FontSize="12"/>
         </Grid>
+
         <!-- Main Content Section -->
-        <Grid Margin="20,70,20,20">
-            <!-- Added top margin to prevent overlap with header -->
+        <Grid Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Image Section -->
-            <Image x:Name="image" Grid.Column="0" Height="250" Margin="10" VerticalAlignment="Center" Width="250" Source="/assets/1560.png" Stretch="Fill"/>
+            <Image x:Name="image" Grid.Column="0" Height="250" VerticalAlignment="Center" 
+                   Width="250" Stretch="Fill" Source="\assets\to-do-list.png"/>
 
             <!-- Text Section -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
-                <TextBlock x:Name="todoList" Text="Todo List" TextWrapping="Wrap" FontSize="24" FontWeight="Bold" Foreground="White"/>
-                <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Text="The task management page is an application built using Microsoft's WPF technology. It displays a list of tasks that users can manage and edit. Task management includes options for adding new tasks, marking tasks as complete or incomplete, editing task descriptions, deleting tasks, and viewing task details. The graphical interface allows users to double-click on task descriptions to edit them, check off tasks using checkboxes, and edit task descriptions using text fields. The application was developed using C# programming language and utilized various models such as TaskModel for representing tasks and the TaskManagerService for managing and maintaining tasks." Foreground="White" Margin="0,10,0,20"/>
+                <TextBlock x:Name="todoList" Text="Todo List" TextWrapping="Wrap" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" 
+                           Text="The task management page is an application built using Microsoft's WPF technology. It displays a list of tasks that users can manage and edit. Task management includes options for adding new tasks, marking tasks as complete or incomplete, editing task descriptions, deleting tasks, and viewing task details. The graphical interface allows users to double-click on task descriptions to edit them, check off tasks using checkboxes, and edit task descriptions using text fields. The application was developed using C# programming language and utilized various models such as TaskModel for representing tasks and the TaskManagerService for managing and maintaining tasks." 
+                           Foreground="White" Margin="0,10,0,20"/>
                 <Button x:Name="goToList" Content="Go to Tasks" Padding="5" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="goToList_Click" FontSize="16" FontWeight="Bold" Cursor="Hand"/>
-            </StackPanel> 
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

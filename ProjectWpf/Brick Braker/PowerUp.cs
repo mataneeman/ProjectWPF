@@ -15,7 +15,7 @@ namespace ProjectWpf.Brick_Braker
         PaddleIncrease,
         ExtraBlocks,
         Shield,
-        Coin // הוסף סוג חדש של תוסף עבור מטבע
+        Coin 
     }
 
     public class PowerUp : UserControl
@@ -36,7 +36,7 @@ namespace ProjectWpf.Brick_Braker
                 {
                     Width = 25,
                     Height = 25,
-                    Source = new BitmapImage(new Uri("pack://application:,,,/Brick Braker/Resources/coin.png", UriKind.RelativeOrAbsolute))
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Brick Braker/Resources/dollar.png", UriKind.RelativeOrAbsolute))
                 };
                 this.Content = _coinImage;
             }
@@ -46,10 +46,10 @@ namespace ProjectWpf.Brick_Braker
                 {
                     Points = new PointCollection
                     {
-                        new Point(10, 0), // Top vertex
-                        new Point(20, 10), // Right vertex
-                        new Point(10, 20), // Bottom vertex
-                        new Point(0, 10)  // Left vertex
+                        new Point(10, 0), 
+                        new Point(20, 10), 
+                        new Point(10, 20), 
+                        new Point(0, 10)  
                     },
                     Fill = GetFillBrushForType(type),
                     Stroke = Brushes.Transparent
@@ -60,10 +60,9 @@ namespace ProjectWpf.Brick_Braker
             this.Width = 25;
             this.Height = 25;
 
-            // אתחול של טיימר עבור היעלמות התוספת
             _disappearTimer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromSeconds(15) // זמן להיעלם, התאם אם צריך
+                Interval = TimeSpan.FromSeconds(15)
             };
             _disappearTimer.Tick += DisappearTimer_Tick;
             _disappearTimer.Start();
@@ -80,11 +79,11 @@ namespace ProjectWpf.Brick_Braker
                 case PowerUpType.ExtraBlocks:
                     return Brushes.Orange;
                 case PowerUpType.Shield:
-                    return Brushes.Red;  // צבע עבור התוסף Shield
+                    return Brushes.Red;  
                 case PowerUpType.Coin:
-                    return Brushes.Gold; // צבע עבור המטבע (למרות שלא בשימוש כי יש תמונה)
+                    return Brushes.Gold; 
                 default:
-                    return Brushes.Transparent; // אם סוג לא מוגדר, השתמש בצבע שקוף
+                    return Brushes.Transparent; 
             }
         }
 

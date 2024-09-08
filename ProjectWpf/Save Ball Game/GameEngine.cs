@@ -5,7 +5,6 @@ using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Windows.Media.Imaging;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace ProjectWpf.Save_Ball_Game
@@ -17,19 +16,19 @@ namespace ProjectWpf.Save_Ball_Game
         private Random rand = new Random();
         private int score = 0;
         private int missed = 0;
-        private double ballSpeed = 10;
-        private double currentBallSpeed;
+        private double ballSpeed = 12;
         private List<Ball> fallingBalls = new List<Ball>();
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private Action<int> updateLives;
         private DateTime lastBallCreationTime = DateTime.Now;
         private const double BallSpeedIncrement = 0.4;
-        private const double BallCreationIntervalSeconds = 1.5;
-        private const int MaxBallsOnScreen = 10;
+        private const double BallCreationIntervalSeconds = 1.3;
+        private const int MaxBallsOnScreen = 15;
         private DispatcherTimer restoreTimer = new DispatcherTimer();
         private double originalWidth;
         private double originalHeight;
         private int lives = 5;
+
         public int Score => score;
 
         public GameEngine(Canvas canvas, Rectangle player, Action<int> updateLives)
@@ -38,9 +37,7 @@ namespace ProjectWpf.Save_Ball_Game
             this.player = player;
             this.updateLives = updateLives;
             this.gameTimer.Tick += GameEngine_Tick;
-            this.gameTimer.Interval = TimeSpan.FromMilliseconds(33); // 30 FPS
-            this.currentBallSpeed = ballSpeed;
-            UpdateLivesDisplay();
+            this.gameTimer.Interval = TimeSpan.FromMilliseconds(50); // 30 FPS
         }
 
         public void StartGame()
@@ -66,7 +63,7 @@ namespace ProjectWpf.Save_Ball_Game
 
             foreach (Ball ball in fallingBalls.ToList())
             {
-                ball.MoveDown(currentBallSpeed);
+                ball.MoveDown(ballSpeed);
                 if (ball.IsOutOfBounds(canvas))
                 {
                     if (ball.GetBallType() == Ball.BallType.Regular)
@@ -118,8 +115,6 @@ namespace ProjectWpf.Save_Ball_Game
             }
         }
 
-
-
         private void RemoveBall(Ball ball)
         {
             canvas.Children.Remove(ball.Rectangle);
@@ -128,10 +123,7 @@ namespace ProjectWpf.Save_Ball_Game
 
         private void UpdateLivesDisplay()
         {
-            if (updateLives != null)
-            {
-                updateLives(lives);
-            }
+            updateLives?.Invoke(lives);
         }
 
         private void UpdateScoreDisplay()
@@ -156,41 +148,35 @@ namespace ProjectWpf.Save_Ball_Game
 
         private Ball.BallType GetRandomBallType()
         {
-            // Weighted probabilities
             int chance = rand.Next(0, 100);
-            if (chance < 80) // 80% chance for regular balls
+            if (chance < 60) // 60% chance for regular balls
             {
                 return Ball.BallType.Regular;
             }
-            else if (chance < 95) // 10% chance for bombs
+            else if (chance < 75) // 15% chance for bombs
             {
                 return Ball.BallType.Bomb;
             }
-            else if (chance < 95) // 5% chance for viruses
+            else if (chance < 85) // 10% chance for viruses
             {
                 return Ball.BallType.Virus;
             }
-            else if (chance < 95) // 5% chance for coins
+            else if (chance < 95) // 10% chance for coins
             {
                 return Ball.BallType.Coin;
             }
-            else // 0% chance for hearts
+            else // 5% chance for hearts
             {
                 return Ball.BallType.live;
             }
         }
 
 
-        private bool RectsOverlap(Rect rect1, Rect rect2)
-        {
-            return rect1.IntersectsWith(rect2);
-        }
-
         private void CheckSpeedIncrease()
         {
-            if (score % 5 == 0)
+            if (score % 2 == 0)
             {
-                currentBallSpeed += BallSpeedIncrement;
+                ballSpeed += BallSpeedIncrement;
             }
         }
 
@@ -205,7 +191,7 @@ namespace ProjectWpf.Save_Ball_Game
 
         private bool IsCollidingWithPlayer(Rectangle ball)
         {
-            double playerMargin = 10;
+            double playerMargin = 2;
 
             Rect playerRect = new Rect(
                 Canvas.GetLeft(player) + playerMargin,
@@ -233,45 +219,52 @@ namespace ProjectWpf.Save_Ball_Game
 
             // Store original position ratio
             double leftRatio = Canvas.GetLeft(player) / (canvas.ActualWidth - originalWidth);
+            double topRatio = Canvas.GetTop(player) / (canvas.ActualHeight - originalHeight);
 
             player.Width *= shrinkFactor;
             player.Height *= shrinkFactor;
 
-            // Calculate new position
+            // Restore position
             double newLeft = leftRatio * (canvas.ActualWidth - player.Width);
+            double newTop = topRatio * (canvas.ActualHeight - player.Height);
 
-            // Ensure new position is within canvas bounds
-            double adjustedLeft = Math.Max(0, Math.Min(newLeft, canvas.ActualWidth - player.Width));
-            Canvas.SetLeft(player, adjustedLeft);
-            Canvas.SetTop(player, canvas.ActualHeight - player.Height);
+            // Ensure the new position is within bounds
+            if (newLeft < 0) newLeft = 0;
+            if (newLeft > canvas.ActualWidth - player.Width) newLeft = canvas.ActualWidth - player.Width;
+            if (newTop < 0) newTop = 0;
+            if (newTop > canvas.ActualHeight - player.Height) newTop = canvas.ActualHeight - player.Height;
 
-            restoreTimer.Interval = TimeSpan.FromSeconds(15);
+            Canvas.SetLeft(player, newLeft);
+            Canvas.SetTop(player, newTop);
+
             restoreTimer.Tick += RestoreBasketSize;
+            restoreTimer.Interval = TimeSpan.FromSeconds(10);
             restoreTimer.Start();
         }
 
+
         private void RestoreBasketSize(object sender, EventArgs e)
         {
+            restoreTimer.Stop();
+
             // Restore original size
             player.Width = originalWidth;
             player.Height = originalHeight;
 
-            // Recalculate and update position
-            UpdatePlayerPosition();
+            // Calculate new position ensuring it stays within the canvas bounds
+            double newLeft = Canvas.GetLeft(player) * (originalWidth / player.Width);
+            double newTop = Canvas.GetTop(player) * (originalHeight / player.Height);
 
-            restoreTimer.Stop();
-            restoreTimer.Tick -= RestoreBasketSize;
+            // Ensure the new position is within bounds
+            if (newLeft < 0) newLeft = 0;
+            if (newLeft > canvas.ActualWidth - player.Width) newLeft = canvas.ActualWidth - player.Width;
+            if (newTop < 0) newTop = 0;
+            if (newTop > canvas.ActualHeight - player.Height) newTop = canvas.ActualHeight - player.Height;
+
+            Canvas.SetLeft(player, newLeft);
+            Canvas.SetTop(player, newTop);
         }
 
-        private void UpdatePlayerPosition()
-        {
-            double leftRatio = Canvas.GetLeft(player) / (canvas.ActualWidth - player.Width);
-            double newLeft = leftRatio * (canvas.ActualWidth - player.Width);
 
-            // Ensure new position is within canvas bounds
-            double adjustedLeft = Math.Max(0, Math.Min(newLeft, canvas.ActualWidth - player.Width));
-            Canvas.SetLeft(player, adjustedLeft);
-            Canvas.SetTop(player, canvas.ActualHeight - player.Height);
-        }
     }
 }

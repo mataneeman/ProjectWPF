@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Icon="/assets/914677.png"
+        Title="Game Center" Height="500" Width="800">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

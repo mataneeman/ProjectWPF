@@ -5,7 +5,7 @@
         Title="Add User" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight">
     <Grid>
         <StackPanel Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Border Background="#2A9D8F" Height="30" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1">
+            <Border Background="#1E1E1E" Height="30" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1">
                 <TextBlock Text="Add New User" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
             <StackPanel Orientation="Horizontal" Margin="0,5">

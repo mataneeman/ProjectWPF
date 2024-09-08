@@ -65,7 +65,7 @@ namespace ProjectWpf.Brick_Braker
             if (_paddle != null) GameCanvas.Children.Add(_paddle);
 
             _ballVelocity = new Vector(3, -3);
-            _originalBallSpeed = 3; // שים לב שהמהירות הנוכחית של הכדור מוגדרת כ-3
+            _originalBallSpeed = 3; 
 
             _gameTimer = new DispatcherTimer
             {
@@ -81,7 +81,7 @@ namespace ProjectWpf.Brick_Braker
 
             _powerUpTimer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromSeconds(12) // הזמן בו תופיע תוספת חדשה
+                Interval = TimeSpan.FromSeconds(12) 
             };
             _powerUpTimer.Tick += PowerUpTimer_Tick;
             _powerUpTimer.Start();
@@ -108,7 +108,6 @@ namespace ProjectWpf.Brick_Braker
                 x = new Random().NextDouble() * (GameCanvas.ActualWidth - powerUpWidth);
                 y = new Random().NextDouble() * (GameCanvas.ActualHeight - powerUpHeight);
 
-                // קבע מיקום בתנאים שלא יכסה את הפדל או את הבלוקים
                 Rect powerUpRect = new Rect(x, y, powerUpWidth, powerUpHeight);
                 bool overlapsWithBricks = _bricks.Any(brick =>
                 {
@@ -136,7 +135,6 @@ namespace ProjectWpf.Brick_Braker
             _powerUps.Add(powerUp);
             GameCanvas.Children.Add(powerUp);
 
-            // הוספת זמן תפוג לתוסף
             _powerUpExpiration[powerUp] = DateTime.Now.AddSeconds(PowerUpDisplayDuration);
         }
 
@@ -314,7 +312,7 @@ namespace ProjectWpf.Brick_Braker
                     }
                     _ballSpeedTimer = new DispatcherTimer
                     {
-                        Interval = TimeSpan.FromSeconds(8) // הגדרת זמן סיום לתוספת מהירות
+                        Interval = TimeSpan.FromSeconds(8) 
                     };
                     _ballSpeedTimer.Tick += BallSpeedTimer_Tick;
                     _ballSpeedTimer.Start();
@@ -373,13 +371,13 @@ namespace ProjectWpf.Brick_Braker
 
                 _shieldTimer = new DispatcherTimer
                 {
-                    Interval = TimeSpan.FromSeconds(1) // Update every second
+                    Interval = TimeSpan.FromSeconds(1) 
                 };
 
                 _shieldTimer.Tick += ShieldTimer_Tick;
                 _shieldTimer.Start();
 
-                _remainingShieldTime = 15; // Shield duration in seconds
+                _remainingShieldTime = 15; 
             }
         }
 
@@ -387,8 +385,8 @@ namespace ProjectWpf.Brick_Braker
         {
             if (_paddle != null)
             {
-                _remainingShieldTime -= 1; // Decrement remaining time
-                _paddle.UpdateCountdown((int)_remainingShieldTime); // Update countdown display with integer value
+                _remainingShieldTime -= 1; 
+                _paddle.UpdateCountdown((int)_remainingShieldTime); 
 
                 if (_remainingShieldTime <= 0)
                 {
@@ -563,7 +561,6 @@ namespace ProjectWpf.Brick_Braker
                 highScoreManager.SaveHighScore(_viewModel.Score);
             }
 
-            // ניקוי כל הכוחניות לפני המעבר לשלב הבא או סיום המשחק
             foreach (PowerUp powerUp in _powerUps.ToList())
             {
                 GameCanvas.Children.Remove(powerUp);
@@ -572,7 +569,6 @@ namespace ProjectWpf.Brick_Braker
 
             List<int> highScores = highScoreManager.LoadHighScores();
 
-            // הצגת תוצאות השיא רק כאשר המשחק נגמר
             if (won)
             {
                 if (_currentLevel < TotalLevels)
@@ -587,7 +583,7 @@ namespace ProjectWpf.Brick_Braker
                 else
                 {
                     GameOverText.Text = "You Win!";
-                    ShowHighScores(highScores); // הצגת תוצאות השיא
+                    ShowHighScores(highScores); 
                     GameOverOverlay.Visibility = Visibility.Visible;
                     StartButton.Visibility = Visibility.Collapsed;
                 }
@@ -595,7 +591,7 @@ namespace ProjectWpf.Brick_Braker
             else
             {
                 GameOverText.Text = "Game Over";
-                ShowHighScores(highScores); // הצגת תוצאות השיא
+                ShowHighScores(highScores); 
                 GameOverOverlay.Visibility = Visibility.Visible;
                 StartButton.Visibility = Visibility.Collapsed;
                 StartButton.Content = "Start";
@@ -604,7 +600,7 @@ namespace ProjectWpf.Brick_Braker
 
         private void ShowHighScores(List<int> highScores)
         {
-            HighScoresText.Visibility = Visibility.Visible; // לוודא שהתצוגה מוצגת רק כאן
+            HighScoresText.Visibility = Visibility.Visible; 
             string highScoresText = "High Scores:\n";
             for (int i = 0; i < highScores.Count; i++)
             {
@@ -615,14 +611,12 @@ namespace ProjectWpf.Brick_Braker
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            // הסרת הבלוקים מהקנבס
             foreach (Rectangle brick in _bricks.ToList())
             {
                 GameCanvas.Children.Remove(brick);
             }
             _bricks.Clear();
 
-            // הסרת התוספות מהקנבס
             foreach (PowerUp powerUp in _powerUps.ToList())
             {
                 GameCanvas.Children.Remove(powerUp);
@@ -634,7 +628,6 @@ namespace ProjectWpf.Brick_Braker
             _viewModel.Score = 0;
             UpdateScore(0);
 
-            // הסתרת תוצאות השיא בעת משחק מחדש
             HighScoresText.Visibility = Visibility.Collapsed;
 
             if (!_isGameRunning)
@@ -651,21 +644,18 @@ namespace ProjectWpf.Brick_Braker
             {
                 GameCanvas.UpdateLayout();
 
-                // Position the ball above the paddle
                 double paddleLeft = Canvas.GetLeft(_paddle);
                 double paddleTop = Canvas.GetTop(_paddle);
                 double paddleWidth = _paddle.Width;
                 double ballWidth = _ball.Width;
 
-                // Center the ball horizontally above the paddle and slightly above it vertically
                 double ballLeft = paddleLeft + (paddleWidth - ballWidth) / 2;
-                double ballTop = paddleTop - _ball.Height - 5; // Slightly above the paddle
+                double ballTop = paddleTop - _ball.Height - 5; 
 
                 Canvas.SetLeft(_ball, ballLeft);
                 Canvas.SetTop(_ball, ballTop);
 
-                // Reset the ball's velocity to the initial state
-                _ballVelocity = new Vector(3, -3); // Adjust as necessary for your game's logic
+                _ballVelocity = new Vector(3, -3); 
             }
         }
 

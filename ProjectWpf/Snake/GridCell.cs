@@ -21,8 +21,8 @@ namespace ProjectWpf.Snack
             {
                 Fill = originalFill,
                 Stretch = Stretch.Fill,
-                RadiusX = 5,
-                RadiusY = 5,
+                RadiusX = 1,
+                RadiusY = 1,
                 Margin = new Thickness(1) 
             };
             Children.Add(rectangle);

@@ -33,7 +33,7 @@ namespace ProjectWpf.Brick_Braker
                 VerticalAlignment = VerticalAlignment.Center,
                 FontSize = 12,
                 FontWeight = FontWeights.Bold,
-                Visibility = Visibility.Collapsed // Hide initially
+                Visibility = Visibility.Collapsed 
             };
 
             var grid = new Grid();
@@ -93,19 +93,19 @@ namespace ProjectWpf.Brick_Braker
         {
             if (IsShieldActive)
             {
-                _rectangle.Fill = Brushes.Firebrick; // צבע מגן
-                _countdownTextBlock.Visibility = Visibility.Visible; // Show the countdown text
+                _rectangle.Fill = Brushes.Firebrick; 
+                _countdownTextBlock.Visibility = Visibility.Visible; 
             }
             else
             {
                 _rectangle.Fill = _originalFill;
-                _countdownTextBlock.Visibility = Visibility.Collapsed; // Hide the countdown text
+                _countdownTextBlock.Visibility = Visibility.Collapsed; 
             }
         }
 
         public void UpdateCountdown(int secondsRemaining)
         {
-            _countdownTextBlock.Text = secondsRemaining.ToString(); // Update countdown text
+            _countdownTextBlock.Text = secondsRemaining.ToString(); 
         }
     }
 }

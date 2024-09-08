@@ -157,7 +157,7 @@ namespace ProjectWpf.Memory_Game_Merage
             {
                 Width = 100,
                 Height = 100,
-                Fill = Brushes.DarkBlue 
+                Fill = Brushes.DarkOrange 
             };
 
             return backShape;

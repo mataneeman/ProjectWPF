@@ -171,7 +171,7 @@ namespace ProjectWpf.Memory_Game_Merage
                 }
                 else
                 {
-                    TimerTextBlock.Foreground = Brushes.Black;
+                    TimerTextBlock.Foreground = Brushes.White;
                 }
             }
         }
@@ -183,7 +183,7 @@ namespace ProjectWpf.Memory_Game_Merage
                 if (CurrentPlayerTextBlock != null)
                 {
                     CurrentPlayerTextBlock.Text = _isPlayer1Turn ? "Player 1's Turn" : "Player 2's Turn";
-                    CurrentPlayerTextBlock.Foreground = _isPlayer1Turn ? Brushes.Blue : Brushes.Red;
+                    CurrentPlayerTextBlock.Foreground = _isPlayer1Turn ? Brushes.Gold : Brushes.Silver;
                     CurrentPlayerTextBlock.Visibility = Visibility.Visible;
                 }
             }

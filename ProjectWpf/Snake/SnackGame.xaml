@@ -3,17 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Snack Game" Height="450" Width="800"
         Loaded="Window_Loaded">
-    <Grid Background="#F2F2F2">
-        <Border Background="#2A9D8F" Height="60" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1"/>
+    <Grid Background="#1E1E1E">
+        <Border Background="#2A2A2A" Height="60" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="10"/>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Text="Snack Game" FontSize="24" FontWeight="Bold" Foreground="Black" Margin="10"/>
+            <TextBlock Text="Snack Game" FontSize="30" FontWeight="Bold" Foreground="White" Margin="20"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,150,0,0">
-            <TextBlock Text="Scores" FontSize="18" FontWeight="Bold" Foreground="#2A9D8F" Margin="10" />
-            <TextBlock x:Name="ScoreText" Text="0" FontSize="18" Foreground="#2A9D8F" Margin="10"/>
+            <TextBlock Text="Scores" FontSize="18" FontWeight="Bold" Foreground="White" Margin="10" />
+            <TextBlock x:Name="ScoreText" Text="0" FontSize="18" Foreground="White" Margin="10"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0">
-            <TextBlock Text="Select :" FontSize="16" FontWeight="Bold" Foreground="Black" Margin="0,0,0,5"/>
+            <TextBlock Text="Select :" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,5"/>
             <ComboBox x:Name="DifficultyComboBox" 
                       HorizontalAlignment="Left" 
                       VerticalAlignment="Center" 
@@ -29,14 +29,14 @@
         <TextBlock x:Name="TimerText" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" FontSize="16" Foreground="Black"/>
         <Viewbox Grid.Row="1" Stretch="Uniform" Margin="20">
             <Grid>
-                <Border BorderBrush="#2A9D8F" BorderThickness="2" Background="White">
+                <Border BorderBrush="#1E1E1E" BorderThickness="2" Background="White">
                     <UniformGrid x:Name="GameGrid" Width="400" Height="400" />
                 </Border>
                 <Border x:Name="GameOverOverlay" Background="#80000000" Visibility="Collapsed">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="Game Over" FontSize="36" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
                         <TextBlock x:Name="HighScoresText" Text="High Scores" FontSize="24" Foreground="White" TextAlignment="Center" Margin="0,0,0,20"/>
-                        <Button x:Name="ResetButton" Content="Reset" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="ResetButton_Click" Cursor="Hand"/>
+                        <Button x:Name="ResetButton" Content="Restart" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="ResetButton_Click" Cursor="Hand"/>
                     </StackPanel>
                 </Border>
             </Grid>

@@ -9,26 +9,26 @@
         KeyDown="Window_KeyDown"
         KeyUp="Window_KeyUp">
 
-    <Grid Background="#F2F2F2">
-        <Border Background="#2A9D8F" Height="60" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1"/>
+    <Grid Background="#1E1E1E">
+        <Border Background="#2A2A2A" Height="60" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="10"/>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Text="Brick Braker" FontSize="24" FontWeight="Bold" Foreground="Black" Margin="10"/>
+            <TextBlock Text="Brick Braker" FontSize="30" FontWeight="Bold" Foreground="White" Margin="20"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Score: " FontSize="16" Foreground="Black" Margin="10"/>
-                <TextBlock Text="{Binding Score}" FontSize="16" Foreground="black" Margin="10"/>
+                <TextBlock Text="Score: " FontSize="16" Foreground="White" Margin="10"/>
+                <TextBlock Text="{Binding Score}" FontSize="16" Foreground="White" Margin="10"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Level: "  Foreground="Black" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
-                <TextBlock x:Name="LevelTextBlock" Text="1" FontSize="36" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+                <TextBlock Text="Level: "  Foreground="White" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+                <TextBlock x:Name="LevelTextBlock" Text="1" FontSize="36" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
             </StackPanel>
         </StackPanel>
 
         <Viewbox Grid.Row="1" Stretch="Uniform" Margin="20">
             <Grid>
-                <Border BorderBrush="#2A9D8F" BorderThickness="2" Background="White">
+                <Border BorderBrush="#2A2A2A" BorderThickness="2" Background="White">
                     <Canvas x:Name="GameCanvas" Width="400" Height="400">
                     </Canvas>
                 </Border>
@@ -47,7 +47,7 @@
         <Button x:Name="StartButton" Content="Start" FontSize="24" Padding="20,10" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" Click="StartButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20" Cursor="Hand"/>
 
         <!-- Legend -->
-        <Border Background="White" BorderBrush="#2A9D8F" BorderThickness="1" Width="170" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10">
+        <Border Background="White" BorderBrush="#2A2A2A" BorderThickness="1" Width="170" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15">
             <StackPanel Orientation="Vertical" Margin="10">
                 <TextBlock Text="Legend:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">

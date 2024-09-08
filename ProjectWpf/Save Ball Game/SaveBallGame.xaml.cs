@@ -60,11 +60,13 @@ namespace ProjectWpf.Save_Ball_Game
             Point position = e.GetPosition(MyCanvas);
             double newX = position.X - PlayerWidth / 2;
 
+            // Ensure the new position is within bounds
             if (newX < 0) newX = 0;
             if (newX > MyCanvas.ActualWidth - PlayerWidth) newX = MyCanvas.ActualWidth - PlayerWidth;
 
             Canvas.SetLeft(playerRectangle, newX);
         }
+
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {

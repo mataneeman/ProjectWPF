@@ -6,17 +6,9 @@
         xmlns:local="clr-namespace:ProjectWpf.Countries"
         mc:Ignorable="d"
         Title="Countries" Height="450" Width="800">
-    <Grid>
-        <!-- Background Gradient -->
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#F2F2F2" Offset="0.99"/>
-                <GradientStop Color="White" Offset="0"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Background="#1E1E1E">
 
-        <!-- Header -->
-        <Border Background="#2A9D8F" Height="60" VerticalAlignment="Top" BorderBrush="#264653" BorderThickness="0,0,0,1">
+        <Border Background="#2A2A2A" Height="60" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="10">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Countries" 
                            FontSize="24" 
@@ -30,9 +22,9 @@
         <!-- Search and Filter Controls -->
         <StackPanel Orientation="Horizontal" Margin="10,80,10,10" VerticalAlignment="Top">
             <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0" TextChanged="SearchTextBox_TextChanged" 
-                     Background="White" BorderBrush="#2A9D8F" BorderThickness="1"/>
+                     Background="White" BorderBrush="#2A2A2A" BorderThickness="1"/>
             <ComboBox x:Name="RegionFilterComboBox" Width="150" SelectionChanged="RegionFilterComboBox_SelectionChanged" 
-                      Background="White" BorderBrush="#2A9D8F" BorderThickness="1">
+                      Background="White" BorderBrush="#2A2A2A" BorderThickness="1">
                 <ComboBoxItem Content="All Regions" IsSelected="True"/>
                 <ComboBoxItem Content="Africa"/>
                 <ComboBoxItem Content="Americas"/>
@@ -44,7 +36,7 @@
 
         <!-- DataGrid to Display Countries -->
         <DataGrid x:Name="CountriesDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*"
-                  Margin="10,130,10,20" Background="White" BorderBrush="#2A9D8F" BorderThickness="1">
+                  Margin="10,130,10,20" Background="White" BorderBrush="#2A2A2A" BorderThickness="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Region" Binding="{Binding Region}"/>

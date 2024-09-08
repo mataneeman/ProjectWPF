@@ -17,7 +17,6 @@ namespace CountriesProject
 
         public string CapitalDisplay => Capital != null && Capital.Any() ? string.Join(", ", Capital) : "No capital";
 
-        // Choose the PNG version of the flag for display
         public string? FlagImageUrl => Flags != null ? Flags.Png : null;
     }
 

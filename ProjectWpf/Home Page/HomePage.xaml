@@ -5,165 +5,183 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectWpf"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="800"
+      d:DesignHeight="780" d:DesignWidth="900"
       Title="HomePage"
       Loaded="Page_Loaded">
 
-    <Grid Background="#FF4CB7A6">
-        <!-- Header Section -->
-        <Grid Height="60" Background="White" VerticalAlignment="Top">
-            <Grid.Effect>
-                <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
-            </Grid.Effect>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Label x:Name="FullName" Content="Matan Ne'eman" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
-                   BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
-                   Margin="10" Padding="1" FontSize="14"/>
-            <Label x:Name="Project" Content="Project By WPF" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
-                   BorderThickness="0" Background="Transparent" Foreground="Black" FontWeight="Bold"
-                   Margin="10" Padding="0" FontSize="14"/>
-        </Grid>
-
-        <!-- Title Section -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,20">
-            <TextBlock Text="Game Center"
-                       FontSize="30" 
-                       FontWeight="Bold" 
-                       Foreground="White"
-                       HorizontalAlignment="Center" />
-        </StackPanel>
-
-        <!-- Game Selection Section -->
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20,130,20,70">
+    <Grid Background="#1E1E1E">
+        <!-- Main Content Area -->
+        <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <!-- Header Row -->
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <!-- Title Row -->
                 <RowDefinition Height="*" />
+                <!-- Game Selection Section -->
+                <RowDefinition Height="Auto" />
+                <!-- Footer Row -->
             </Grid.RowDefinitions>
 
-            <!-- Top Row of Images -->
-            <UniformGrid Grid.Row="0" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top" >
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="20">
-                    <Image x:Name="TicTacToe" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"
-                           Source="/assets/tic-tac-toe-game.png" 
-                           Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="TicTacToe_Click" Stretch="UniformToFill">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="Tic Tac Toe" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
-                </StackPanel>
+            <!-- Header Section -->
+            <Grid Grid.Row="0" Background="#2A2A2A" Margin="0">
+                <Grid.Effect>
+                    <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
+                </Grid.Effect>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    <Image x:Name="BrickBrakerPage" Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" 
-                           MouseDown="BrickBrakerPage_Click" Source="/assets/1687634.png" Stretch="UniformToFill">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="Brick Breaker" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Margin="0,5,0,0"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    <Image x:Name="Snack" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"
-                           Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="Snack_Click" Source="/assets/1500006-200.png">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="Snack" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
-                </StackPanel>
-            </UniformGrid>
+                <Label x:Name="FullName" Content="Matan Ne'eman" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       BorderThickness="0" Background="Transparent" Foreground="White" FontWeight="Bold"
+                       Margin="10" Padding="1" FontSize="12"/>
 
-            <!-- Second Row of Images -->
-            <UniformGrid Grid.Row="1" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top" >
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-                    <Image x:Name="TodoList" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"
-                           Source="/assets/1560.png" 
-                           Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="TodoList_Click" Stretch="UniformToFill">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="Todo List" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    <Image x:Name="UserManagement" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"
-                           Source="/assets/1034785-200.png" 
-                           Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="UserManagement_Click" Stretch="UniformToFill">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="User Management" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    <Image x:Name="Countries" Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" Source="/assets/3437694-200.png" MouseDown="Countries_Click">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="Countries" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Margin="0,5,0,0"/>
-                </StackPanel>
-            </UniformGrid>
+                <Label x:Name="Project" Content="Project By WPF" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       BorderThickness="0" Background="Transparent" Foreground="White" FontWeight="Bold"
+                       Margin="10" Padding="0" FontSize="12"/>
+            </Grid>
 
-            <!-- Third Row of Images -->
-            <UniformGrid Grid.Row="2" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-                    <Image x:Name="MemoryGame" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" Source="/assets/6168771.png"
-                           Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="MemoryGame_Click"  Stretch="UniformToFill">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="Memory Game" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image x:Name="SaveBallGame" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" Source="/assets/858633.png"
-                           
-                           Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand" MouseDown="SaveBallGame_Click" Stretch="UniformToFill">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="Save Ball Game" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    <Image x:Name="NewProject3" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"
-                         Source="/assets/arrow-left-solid.svg.png"
-                           Margin="5" MaxHeight="70" MaxWidth="70" Cursor="Hand"  Stretch="UniformToFill">
-                        <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="8" Color="White"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock Text="New Project 3" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
-                </StackPanel>
-            </UniformGrid>
-        </Grid>
+            <!-- Title Section -->
+            <TextBlock Text="Game Center" FontSize="36" FontWeight="Bold" Foreground="White" 
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,15,15,15" Grid.Row="1"/>
 
-        <!-- Footer Section -->
-        <Grid Height="40" Background="White" VerticalAlignment="Bottom">
-            <Grid.Effect>
-                <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
-            </Grid.Effect>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Label Content="Copyright © 2024. All rights reserved."
-                   Grid.Column="0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   BorderThickness="0"
-                   Background="Transparent"
-                   Foreground="Gray"
-                   FontWeight="Bold"
-                   Margin="10"
-                   Padding="1"
-                   FontSize="12"/>
+            <!-- Game Selection Section -->
+            <Grid Grid.Row="2" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Game Items -->
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="0" MouseDown="TicTacToe_Click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="TicTacToe" Source="/assets/tic-tac-toe.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="Tic Tac Toe" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="2" Grid.Column="1" MouseDown="BrickBrakerPage_Click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="BrickBreaker" Source="\assets\brick-breaker.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="Brick Breaker" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="2" MouseDown="MemoryGame_Click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="MemoryGame" Source="\assets\memory-game.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="Memory Game" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="2" Grid.Column="0" MouseDown="SaveBallGame_Click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="SaveBallGame" Source="/assets/net.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="Save Ball Game" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="1" MouseDown="Snack_Click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="Snack" Source="\assets\game.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="Snake Game" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="2" MouseDown="UserManagement_Click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="UserManagement" Source="\assets\management.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="User Management" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="0" MouseDown="Countries_Click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="Countries" Source="\assets\coronavirus.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="Countries" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="1" MouseDown="TodoList_Click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="TodoList" Source="\assets\to-do-list.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="Todo List" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="#444444" BorderThickness="1" Padding="10" Margin="10" Grid.Row="2" Grid.Column="2" MouseDown="FlappyBird_click">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image x:Name="FlappyBird" Source="/assets/FlappyBird.png" Margin="10" MaxHeight="80" MaxWidth="80" Cursor="Hand" Stretch="Uniform" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+                        <TextBlock Text="Flappy Bird" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+     
+            <!-- Footer Section -->
+            <Border Grid.Row="3" Background="#2A2A2A" Padding="3" VerticalAlignment="Bottom">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <!-- For the copyright text -->
+                        <ColumnDefinition Width="Auto" />
+                        <!-- For the images -->
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Copyright © 2024. All rights reserved."
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           BorderThickness="0"
+                           Background="Transparent"
+                           Foreground="Gray"
+                           FontWeight="Bold"
+                           Margin="0"
+                           Padding="1"
+                           FontSize="12"
+                           Grid.Column="0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                        <Image x:Name="c_sharp" Margin="0,0,10,0" Width="30" Height="30" Source="\assets\c-sharp.png"/>
+                        <Image x:Name="wpf" Margin="0,0,10,0" Width="30" Height="30" Source="\assets\wpf.png"/>
+                        <Image x:Name="oop" Margin="0,0,10,0" Width="30" Height="30" Source="\assets\computer.png"/>
+                        <Image x:Name="dotnet" Margin="0,0,10,0" Width="30" Height="30" Source="\assets\website.png"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
         </Grid>
     </Grid>
 </Page>

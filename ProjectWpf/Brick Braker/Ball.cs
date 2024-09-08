@@ -21,10 +21,8 @@ namespace ProjectWpf.Brick_Braker
 
             };
 
-            // Set the Ball as the content of the UserControl
             this.Content = _ellipse;
 
-            // Set default velocity
             Velocity = new Vector(3, -3);
         }
     }

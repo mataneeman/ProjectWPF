@@ -1,13 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Media;
-using System.Windows;
 using System.Windows.Media.Animation;
-using ProjectWpf.Snack;
-using static System.Net.Mime.MediaTypeNames;
-using UserManagement;
 
 namespace ProjectWpf.Save_Ball_Game
 {
@@ -22,7 +19,6 @@ namespace ProjectWpf.Save_Ball_Game
             live
         }
 
-        private double speed;
         private Rectangle rectangle;
         private BallType ballType;
         private static readonly Random rand = new Random();
@@ -32,16 +28,18 @@ namespace ProjectWpf.Save_Ball_Game
         public Ball(double canvasWidth, BallType type)
         {
             ballType = type;
-            double ballSize = rand.Next(20, 41); // Random ball size
+            double ballSize = rand.Next(20, 41);
             double ballX = rand.Next(0, (int)(canvasWidth - ballSize));
             string ballImageUri = type switch
             {
                 BallType.Bomb => "pack://application:,,,/Save Ball Game/Images/bomb.png",
                 BallType.Virus => "pack://application:,,,/Save Ball Game/Images/virus.png",
-                BallType.Coin => "pack://application:,,,/Save Ball Game/Images/coin.png",
-                BallType.live => "pack://application:,,,/Save Ball Game/Images/red_heart.png",
-                _ => $"pack://application:,,,/Save Ball Game/Images/ball{rand.Next(1, 8)}.png"
+                BallType.Coin => "pack://application:,,,/Save Ball Game/Images/dollar.png",
+                BallType.live => "pack://application:,,,/Save Ball Game/Images/favorite.png",
+                _ => $"pack://application:,,,/Save Ball Game/Images/ball{rand.Next(1, 12)}.png"
             };
+
+
             rectangle = new Rectangle
             {
                 Width = ballSize,
@@ -52,13 +50,14 @@ namespace ProjectWpf.Save_Ball_Game
             };
 
             Canvas.SetLeft(rectangle, ballX);
-            Canvas.SetTop(rectangle, -ballSize); // Start above the canvas
+            Canvas.SetTop(rectangle, -ballSize);
         }
 
         public void MoveDown(double speed)
         {
             Canvas.SetTop(rectangle, Canvas.GetTop(rectangle) + speed);
         }
+
 
         public bool IsOutOfBounds(Canvas canvas)
         {
@@ -69,6 +68,7 @@ namespace ProjectWpf.Save_Ball_Game
         {
             canvas.Children.Add(rectangle);
         }
+
 
         public void Hide()
         {
@@ -84,10 +84,6 @@ namespace ProjectWpf.Save_Ball_Game
             rectangle.Opacity = 1; // Ensure full opacity when showing
         }
 
-        public Rect GetRectangleBounds()
-        {
-            return new Rect(Canvas.GetLeft(rectangle), Canvas.GetTop(rectangle), rectangle.Width, rectangle.Height);
-        }
 
         public BallType GetBallType()
         {
