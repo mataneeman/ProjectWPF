@@ -1,4 +1,4 @@
-#WPF Games and User Management Application
+# WPF Games and User Management Application
 
 Overview
 This project is a WPF (Windows Presentation Foundation) application developed in C# that incorporates a variety of features, including multiple games, country information, user management, and task management. The application is designed to provide a user-friendly interface for interacting with different functionalities, utilizing data from the REST Countries API.
