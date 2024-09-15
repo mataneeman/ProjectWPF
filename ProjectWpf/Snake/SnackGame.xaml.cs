@@ -96,9 +96,9 @@ namespace ProjectWpf.Snack
             if (game.GameOver)
             {
                 gameTimer.Stop();
-                wallMoveTimer.Stop(); 
-                highScoresManager.AddScore(game.Score); 
-                GameOverOverlay.Visibility = Visibility.Visible; 
+                wallMoveTimer.Stop();
+                highScoresManager.AddScore(game.Score, GetSelectedDifficulty()); // שמירת התוצאה לפי רמת הקושי
+                GameOverOverlay.Visibility = Visibility.Visible;
                 UpdateHighScoresUI();
                 return;
             }
@@ -146,10 +146,19 @@ namespace ProjectWpf.Snack
             ScoreText.Text = game.Score.ToString();
         }
 
+        private string GetSelectedDifficulty()
+        {
+            if (DifficultyComboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                return (string)selectedItem.Content;
+            }
+            return "Easy"; // ברירת מחדל במקרה שאין רמה נבחרת
+        }
         private void UpdateHighScoresUI()
         {
-            List<int> highScores = highScoresManager.HighScores;
-            string highScoresText = "High Scores:\n";
+            string difficulty = GetSelectedDifficulty();
+            List<int> highScores = highScoresManager.GetHighScores(difficulty);
+            string highScoresText = $"High Scores ({difficulty}):\n";
             for (int i = 0; i < highScores.Count; i++)
             {
                 highScoresText += $"{i + 1}. {highScores[i]}\n";

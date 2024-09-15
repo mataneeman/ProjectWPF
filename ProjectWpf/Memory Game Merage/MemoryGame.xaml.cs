@@ -130,10 +130,10 @@ namespace ProjectWpf.Memory_Game_Merage
 
             _timeLeft = _difficultyLevel switch
             {
-                "Easy" => TimeSpan.FromMinutes(1),
-                "Medium" => TimeSpan.FromMinutes(2),
-                "Hard" => TimeSpan.FromMinutes(3),
-                _ => TimeSpan.FromMinutes(1)
+                "Easy" => TimeSpan.FromSeconds(90),
+                "Medium" => TimeSpan.FromSeconds(150),
+                "Hard" => TimeSpan.FromSeconds(210),
+                _ => TimeSpan.  FromSeconds(90)
             };
 
             _gameTimer = new DispatcherTimer
@@ -346,7 +346,7 @@ namespace ProjectWpf.Memory_Game_Merage
                 {
                     if (Player1ScoreTextBlock != null)
                     {
-                        Player1ScoreTextBlock.Text = $"Player 1: {score}";
+                        Player1ScoreTextBlock.Text = $"Player: {score}";
                     }
                 }
             });
@@ -362,7 +362,7 @@ namespace ProjectWpf.Memory_Game_Merage
                 {
                     if (_gameLogic.Player1 != null)
                     {
-                        GameOverText.Text = _gameLogic.Player1.Score > 0 ? $"{_gameLogic.Player1.Name} Wins!" : "Game Over!";
+                        GameOverText.Text = "Game Over!";
                     }
                     else
                     {
@@ -373,16 +373,18 @@ namespace ProjectWpf.Memory_Game_Merage
                 {
                     GameOverText.Text = _gameResultsManager?.GetGameOverMessage() ?? "Game Over!";
                 }
-
                 _gameTimer?.Stop();
+
                 if (CurrentPlayerTextBlock != null)
                 {
                     CurrentPlayerTextBlock.Visibility = Visibility.Collapsed;
                 }
+
                 if (GameOverOverlay != null)
                 {
                     GameOverOverlay.Visibility = Visibility.Visible;
                 }
+
                 if (StartButton != null)
                 {
                     StartButton.Visibility = Visibility.Collapsed;
@@ -417,10 +419,10 @@ namespace ProjectWpf.Memory_Game_Merage
 
             _timeLeft = _difficultyLevel switch
             {
-                "Easy" => TimeSpan.FromMinutes(1),
-                "Medium" => TimeSpan.FromMinutes(2),
-                "Hard" => TimeSpan.FromMinutes(3),
-                _ => TimeSpan.FromMinutes(1)
+                "Easy" => TimeSpan.FromSeconds(90),
+                "Medium" => TimeSpan.FromSeconds(150),
+                "Hard" => TimeSpan.FromSeconds(210),
+                _ => TimeSpan.FromSeconds(90)
             };
             UpdateTimerDisplay();
             _gameTimer?.Stop();
@@ -479,10 +481,10 @@ namespace ProjectWpf.Memory_Game_Merage
             ShowEntranceScreen();
             _timeLeft = _difficultyLevel switch
             {
-                "Easy" => TimeSpan.FromMinutes(1),
-                "Medium" => TimeSpan.FromMinutes(2),
-                "Hard" => TimeSpan.FromMinutes(3),
-                _ => TimeSpan.FromMinutes(1)
+                "Easy" => TimeSpan.FromSeconds(90),
+                "Medium" => TimeSpan.FromSeconds(150),
+                "Hard" => TimeSpan.FromSeconds(210),
+                _ => TimeSpan.FromSeconds(90)
             };
             UpdateTimerDisplay();
             _gameTimer?.Stop();

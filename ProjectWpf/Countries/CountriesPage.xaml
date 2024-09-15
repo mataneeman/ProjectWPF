@@ -23,7 +23,7 @@
 
             <Button x:Name="GoBack" Grid.Column="0" VerticalAlignment="Center"
                     BorderThickness="0" Background="Transparent" Foreground="White" FontWeight="Bold"
-                     Click="GoBack_Click" Padding="10" Cursor="Hand">
+                     Click="GoBack_Click" Margin="10,0,0,0" Padding="10" Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/assets/arrow-left-solid.png" />
                 </StackPanel>

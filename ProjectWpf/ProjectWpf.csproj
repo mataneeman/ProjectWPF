@@ -31,6 +31,7 @@
     <None Remove="Brick Braker\1687634.png" />
     <None Remove="Brick Braker\arrow-left-solid.svg.png" />
     <None Remove="Brick Braker\coin.png" />
+    <None Remove="Brick Braker\Resources\dollar.png" />
     <None Remove="Flappy Bird\Resources\background.jpg" />
     <None Remove="Flappy Bird\Resources\bird.png" />
     <None Remove="Flappy Bird\Resources\flappy-bird.png" />
@@ -114,7 +115,7 @@
     <Resource Include="assets\user-plus-solid.svg.png" />
     <Resource Include="assets\website.png" />
     <Resource Include="assets\wpf.png" />
-    <Resource Include="Brick Braker\Resources\coin.png" />
+    <Resource Include="Brick Braker\Resources\dollar.png" />
     <Resource Include="Flappy Bird\Resources\background.jpg" />
     <Resource Include="Flappy Bird\Resources\bird.png" />
     <Resource Include="Flappy Bird\Resources\flappy-bird.png" />

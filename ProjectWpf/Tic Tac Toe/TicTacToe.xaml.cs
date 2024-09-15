@@ -124,10 +124,10 @@ namespace ProjectWpf
             button9.IsEnabled = true;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            var position = (Tuple<int, int>)button.Tag;
+            Tuple<int,int> position = (Tuple<int, int>)button.Tag;
             int row = position.Item1;
             int col = position.Item2;
 
@@ -145,14 +145,14 @@ namespace ProjectWpf
                 game.SwitchTurn();
                 if (isPlayingWithComputer && !game.Player1Turn)
                 {
-                    Thread.Sleep(500);
+                    await Task.Delay(500); 
                     ComputerPlay();
                 }
             }
         }
 
 
-        private void MakeEasyComputerMove()
+        private Button? MakeEasyComputerMove()
         {
             Button? button;
             int row;
@@ -177,26 +177,32 @@ namespace ProjectWpf
                     game.SwitchTurn();
                 }
             }
+            return button;
         }
+
 
         private void MakeHardComputerMove()
         {
-            Button? button = FindBlockingMove();
-            if (button != null)
+            Button? bestMove = FindBestMove(isBlocking: false);
+
+            if (bestMove == null)
             {
-                MakeMove(button);
-                return;
+                bestMove = FindBestMove(isBlocking: true);
             }
 
-            button = FindWinningMove();
-            if (button != null)
+            if (bestMove == null)
             {
-                MakeMove(button);
-                return;
+                bestMove = MakeEasyComputerMove();
             }
 
-            MakeEasyComputerMove();
+            if (bestMove != null)
+            {
+                MakeMove(bestMove);
+            }
         }
+
+
+
 
         private void MakeMove(Button button)
         {
@@ -215,11 +221,16 @@ namespace ProjectWpf
                 }
             }
         }
-
-        private Button? FindBestMove(bool isBlocking)
+        private int Minimax(int depth, bool isMaximizing)
         {
-            int currentPlayer = game.Player1Turn ? 1 : 2;
-            int opponentPlayer = isBlocking ? (currentPlayer == 1 ? 2 : 1) : currentPlayer;
+            GameStatus status = game.CheckGameStatus();
+
+            if (status == GameStatus.Win)
+                return isMaximizing ? -10 : 10;
+            if (status == GameStatus.Draw)
+                return 0;
+
+            int bestScore = isMaximizing ? int.MinValue : int.MaxValue;
 
             for (int row = 0; row < 3; row++)
             {
@@ -228,28 +239,102 @@ namespace ProjectWpf
                     Button? button = GetButtonAt(row, col);
                     if (button != null && button.IsEnabled)
                     {
-                        // Temporarily mark the button
-                       // button.IsEnabled = false;
                         game.MarkButton(button, row, col);
+                        int score = Minimax(depth + 1, !isMaximizing); 
+                        game.ReverseMarkButton(button, row, col); 
 
-                        // Check if placing a mark at this position results in a win or block
-                        GameStatus status = game.CheckGameStatus();
-
-                        if (status == GameStatus.Win)
-                        {
-                            // Revert the button state
-                           // button.IsEnabled = true;
-                            game.ReverseMarkButton(button, row, col); // Revert marking
-                            return button;
-                        }
-
-                        // Revert the button state
-                        //button.IsEnabled = true;
-                        game.ReverseMarkButton(button, row, col); // Revert marking
+                        if (isMaximizing)
+                            bestScore = Math.Max(score, bestScore);
+                        else
+                            bestScore = Math.Min(score, bestScore);
                     }
                 }
             }
-            return null;
+            return bestScore;
+        }
+
+        private Button? FindBestMove(bool isBlocking)
+        {
+            int bestScore = isBlocking ? int.MaxValue : int.MinValue;
+            Button? bestMove = null;
+
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    Button? button = GetButtonAt(row, col);
+                    if (button != null && button.IsEnabled)
+                    {
+                        game.MarkButton(button, row, col);
+                        int score = Minimax(0, !isBlocking); 
+                        game.ReverseMarkButton(button, row, col); 
+
+                        if (isBlocking)
+                        {
+                            if (score < bestScore)
+                            {
+                                bestScore = score;
+                                bestMove = button;
+                            }
+                        }
+                        else
+                        {
+                            if (score > bestScore)
+                            {
+                                bestScore = score;
+                                bestMove = button;
+                            }
+                        }
+                    }
+                }
+            }
+            return bestMove;
+        }
+
+
+
+        private async void ComputerPlay()
+        {
+            if (game.IsHardDifficulty)
+            {
+                Button? bestMove = FindBestMove(isBlocking: false);
+
+                if (bestMove == null)
+                {
+                    bestMove = FindBestMove(isBlocking: true);
+                }
+
+                if (bestMove == null)
+                {
+                    bestMove = MakeEasyComputerMove();
+                }
+
+                await Task.Delay(1000);
+
+                if (bestMove != null)
+                {
+                    MakeMove(bestMove);
+                }
+            }
+            else
+            {
+                Button? easyMove = MakeEasyComputerMove();
+
+                await Task.Delay(1000);
+
+                if (easyMove != null)
+                {
+                    MakeMove(easyMove);
+                }
+            }
+        }
+
+
+
+
+        private Button? FindWinningMove()
+        {
+            return FindBestMove(isBlocking: false);
         }
 
         private Button? FindBlockingMove()
@@ -257,49 +342,13 @@ namespace ProjectWpf
             return FindBestMove(isBlocking: true);
         }
 
-        private Button? FindWinningMove()
-        {
-            return FindBestMove(isBlocking: false);
-        }
-
-        private void ComputerPlay()
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (game.IsHardDifficulty)
-                {
-                    Button? button = FindBlockingMove();
-                    var args = new RoutedEventArgs(Button.ClickEvent);
-                    Button_Click(button,args);
-                    return;
-                    /*if (button != null)
-                    {
-                        MakeMove(button);
-                        return;
-                    }
-
-                    button = FindWinningMove();
-                    if (button != null)
-                    {
-                        MakeMove(button);
-                        return;
-                    }*/
-                }
-
-                // Fallback to easy move if no blocking or winning move is found
-                MakeEasyComputerMove();
-            });
-        }
-
-
-
-
 
         private Button? GetButtonAt(int row, int col)
         {
             return GameGrid.Children.OfType<Button>()
                 .FirstOrDefault(x => Grid.GetRow(x) == row && Grid.GetColumn(x) == col);
         }
+
 
         private void UpdateScoreboard()
         {

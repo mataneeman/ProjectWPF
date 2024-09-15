@@ -10,6 +10,7 @@
       Loaded="Page_Loaded">
 
     <Grid Background="#1E1E1E">
+        
         <!-- Main Content Area -->
         <Grid Margin="10">
             <Grid.RowDefinitions>
@@ -43,8 +44,14 @@
             </Grid>
 
             <!-- Title Section -->
+
+            <!-- Title Section -->
             <TextBlock Text="Game Center" FontSize="36" FontWeight="Bold" Foreground="White" 
-                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,15,15,15" Grid.Row="1"/>
+           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,15,15,15" Grid.Row="1">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.7"/>
+                </TextBlock.Effect>
+            </TextBlock>
 
             <!-- Game Selection Section -->
             <Grid Grid.Row="2" Margin="20">
@@ -152,6 +159,8 @@
             </Grid>
      
             <!-- Footer Section -->
+            <!-- Footer Section -->
+            <!-- Footer Section -->
             <Border Grid.Row="3" Background="#2A2A2A" Padding="3" VerticalAlignment="Bottom">
                 <Border.Effect>
                     <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" BlurRadius="10" Opacity="0.6"/>
@@ -161,20 +170,28 @@
                         <ColumnDefinition Width="*" />
                         <!-- For the copyright text -->
                         <ColumnDefinition Width="Auto" />
+                        <!-- For the date and time -->
+                        <ColumnDefinition Width="Auto" />
                         <!-- For the images -->
                     </Grid.ColumnDefinitions>
+
                     <Label Content="Copyright © 2024. All rights reserved."
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           BorderThickness="0"
-                           Background="Transparent"
-                           Foreground="Gray"
-                           FontWeight="Bold"
-                           Margin="0"
-                           Padding="1"
-                           FontSize="12"
-                           Grid.Column="0"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               BorderThickness="0"
+               Background="Transparent"
+               Foreground="Gray"
+               FontWeight="Bold"
+               Margin="0"
+               Padding="1"
+               FontSize="12"
+               Grid.Column="0"/>
+
+                    <!-- Date and Time TextBlock -->
+                    <TextBlock x:Name="DateTimeTextBlock" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Foreground="White" FontWeight="Bold" FontSize="12" Margin="10,10,220,10" Padding="1"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
                         <Image x:Name="c_sharp" Margin="0,0,10,0" Width="30" Height="30" Source="\assets\c-sharp.png"/>
                         <Image x:Name="wpf" Margin="0,0,10,0" Width="30" Height="30" Source="\assets\wpf.png"/>
                         <Image x:Name="oop" Margin="0,0,10,0" Width="30" Height="30" Source="\assets\computer.png"/>
