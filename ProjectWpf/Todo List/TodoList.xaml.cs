@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 
 namespace ProjectWpf.Todo_List
 {
@@ -19,39 +16,27 @@ namespace ProjectWpf.Todo_List
         private void InitializeTasks()
         {
             _todoList = new TaskManagerService();
-            taskPanel.ItemsSource = _todoList.Tasks; 
+            taskPanel.ItemsSource = _todoList.ActiveTasks;
+            completedTaskPanel.ItemsSource = _todoList.CompletedTasks;
         }
 
         private void OnTaskToggled(object sender, RoutedEventArgs e)
         {
-            if (sender is CheckBox checkBox && checkBox.DataContext is TaskModel task)
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
             {
-                _todoList.ToggleTaskIsComplete(task.Id);
-            }
-        }
-
-        private void OnTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                if (sender is TextBlock textBlock && textBlock.DataContext is TaskModel task)
+                TaskModel task = checkBox.DataContext as TaskModel;
+                if (task != null)
                 {
-                    FrameworkElement parent = (FrameworkElement)textBlock.Parent;
-                    TextBox editTextBox = (TextBox)parent.FindName("editTaskDescription");
-                    Button btnSave = (Button)parent.FindName("btnSave");
-
-                    textBlock.Visibility = Visibility.Collapsed;
-                    editTextBox.Visibility = Visibility.Visible;
-                    btnSave.Visibility = Visibility.Visible;
-
-                    editTextBox.Text = textBlock.Text;
+                    _todoList.ToggleTaskIsComplete(task.Id);
                 }
             }
         }
 
         private void OnEditTask(object sender, RoutedEventArgs e)
         {
-            if (sender is Button editButton)
+            Button editButton = sender as Button;
+            if (editButton != null)
             {
                 FrameworkElement parent = (FrameworkElement)editButton.Parent;
                 TextBlock textBlock = (TextBlock)parent.FindName("txtTaskDescription");
@@ -60,37 +45,45 @@ namespace ProjectWpf.Todo_List
 
                 if (textBlock != null && editTextBox != null && btnSave != null)
                 {
+                    editTextBox.Text = textBlock.Text;
                     textBlock.Visibility = Visibility.Collapsed;
                     editTextBox.Visibility = Visibility.Visible;
                     btnSave.Visibility = Visibility.Visible;
-
-                    editTextBox.Text = textBlock.Text;
                 }
             }
         }
 
         private void OnSaveEdit(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btnSave && btnSave.DataContext is TaskModel task)
+            Button saveButton = sender as Button;
+            if (saveButton != null)
             {
-                FrameworkElement parent = (FrameworkElement)btnSave.Parent;
-                TextBox editTextBox = (TextBox)parent.FindName("editTaskDescription");
+                FrameworkElement parent = (FrameworkElement)saveButton.Parent;
                 TextBlock textBlock = (TextBlock)parent.FindName("txtTaskDescription");
+                TextBox editTextBox = (TextBox)parent.FindName("editTaskDescription");
 
-                editTextBox.Visibility = Visibility.Collapsed;
-                btnSave.Visibility = Visibility.Collapsed;
-                textBlock.Visibility = Visibility.Visible;
-
-                textBlock.Text = editTextBox.Text;
-                _todoList.UpdateTask(task.Id, editTextBox.Text);
+                if (textBlock != null && editTextBox != null)
+                {
+                    TaskModel task = textBlock.DataContext as TaskModel;
+                    if (task != null)
+                    {
+                        _todoList.UpdateTask(task.Id, editTextBox.Text);
+                        textBlock.Text = editTextBox.Text;
+                        textBlock.Visibility = Visibility.Visible;
+                        editTextBox.Visibility = Visibility.Collapsed;
+                        saveButton.Visibility = Visibility.Collapsed;
+                    }
+                }
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtNewTask.Text))
+            string newTaskText = txtNewTask.Text;
+            if (!string.IsNullOrWhiteSpace(newTaskText))
             {
-                TaskModel newTask = new TaskModel(_todoList.Tasks.Count + 1, txtNewTask.Text);
+                int id = _todoList.ActiveTasks.Count + _todoList.CompletedTasks.Count + 1;
+                TaskModel newTask = new TaskModel(id, newTaskText);
                 _todoList.AddNewTask(newTask);
                 txtNewTask.Clear();
             }
@@ -98,9 +91,20 @@ namespace ProjectWpf.Todo_List
 
         private void OnDeleteTask(object sender, RoutedEventArgs e)
         {
-            if (sender is Button deleteButton && deleteButton.DataContext is TaskModel task)
+            Button deleteButton = sender as Button;
+            if (deleteButton != null)
             {
-                _todoList.RemoveTask(task.Id);
+                FrameworkElement parent = (FrameworkElement)deleteButton.Parent;
+                TextBlock textBlock = (TextBlock)parent.FindName("txtTaskDescription");
+
+                if (textBlock != null)
+                {
+                    TaskModel task = textBlock.DataContext as TaskModel;
+                    if (task != null)
+                    {
+                        _todoList.RemoveTask(task.Id);
+                    }
+                }
             }
         }
     }

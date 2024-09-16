@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectWpf.Countries"
         mc:Ignorable="d"
-        Title="Countries" Height="450" Width="800">
+        Title="Countries" Height="600" Width="800">
     <Grid Background="#1E1E1E">
 
         <Border Background="#2A2A2A" Height="60" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="10">

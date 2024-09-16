@@ -123,15 +123,14 @@ namespace ProjectWpf
             button8.IsEnabled = true;
             button9.IsEnabled = true;
         }
-
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            Tuple<int,int> position = (Tuple<int, int>)button.Tag;
+            Tuple<int, int> position = (Tuple<int, int>)button.Tag;
             int row = position.Item1;
             int col = position.Item2;
 
-            if (!button.IsEnabled) return;
+            if (!button.IsEnabled || !game.Player1Turn) return; // נוודא שהתור הוא של השחקן
 
             game.MarkButton(button, row, col);
             GameStatus status = game.CheckGameStatus();
@@ -142,14 +141,17 @@ namespace ProjectWpf
             }
             else
             {
-                game.SwitchTurn();
-                if (isPlayingWithComputer && !game.Player1Turn)
+                game.SwitchTurn(); // שינוי התור לשחקן השני
+                if (isPlayingWithComputer && !game.Player1Turn) // אם התור של המחשב, נבצע את מהלך המחשב
                 {
-                    await Task.Delay(500); 
+                    await Task.Delay(500);
                     ComputerPlay();
                 }
             }
         }
+
+
+
 
 
         private Button? MakeEasyComputerMove()
@@ -181,26 +183,6 @@ namespace ProjectWpf
         }
 
 
-        private void MakeHardComputerMove()
-        {
-            Button? bestMove = FindBestMove(isBlocking: false);
-
-            if (bestMove == null)
-            {
-                bestMove = FindBestMove(isBlocking: true);
-            }
-
-            if (bestMove == null)
-            {
-                bestMove = MakeEasyComputerMove();
-            }
-
-            if (bestMove != null)
-            {
-                MakeMove(bestMove);
-            }
-        }
-
 
 
 
@@ -217,10 +199,12 @@ namespace ProjectWpf
                 }
                 else
                 {
-                    game.SwitchTurn();
+                    game.SwitchTurn(); // שינוי התור לשחקן הבא
                 }
             }
         }
+
+
         private int Minimax(int depth, bool isMaximizing)
         {
             GameStatus status = game.CheckGameStatus();
@@ -240,8 +224,8 @@ namespace ProjectWpf
                     if (button != null && button.IsEnabled)
                     {
                         game.MarkButton(button, row, col);
-                        int score = Minimax(depth + 1, !isMaximizing); 
-                        game.ReverseMarkButton(button, row, col); 
+                        int score = Minimax(depth + 1, !isMaximizing);
+                        game.ReverseMarkButton(button, row, col);
 
                         if (isMaximizing)
                             bestScore = Math.Max(score, bestScore);
@@ -252,6 +236,7 @@ namespace ProjectWpf
             }
             return bestScore;
         }
+
 
         private Button? FindBestMove(bool isBlocking)
         {
@@ -295,9 +280,12 @@ namespace ProjectWpf
 
         private async void ComputerPlay()
         {
+            if (game.Player1Turn) return; // אם התור של השחקן, נעצור את המתודה
+
+            Button? bestMove;
             if (game.IsHardDifficulty)
             {
-                Button? bestMove = FindBestMove(isBlocking: false);
+                bestMove = FindBestMove(isBlocking: false);
 
                 if (bestMove == null)
                 {
@@ -308,39 +296,22 @@ namespace ProjectWpf
                 {
                     bestMove = MakeEasyComputerMove();
                 }
-
-                await Task.Delay(1000);
-
-                if (bestMove != null)
-                {
-                    MakeMove(bestMove);
-                }
             }
             else
             {
-                Button? easyMove = MakeEasyComputerMove();
+                bestMove = MakeEasyComputerMove();
+            }
 
-                await Task.Delay(1000);
+            await Task.Delay(1000);
 
-                if (easyMove != null)
-                {
-                    MakeMove(easyMove);
-                }
+            if (bestMove != null)
+            {
+                MakeMove(bestMove);
+                game.SwitchTurn(); // נוודא שהתור משתנה לאחר תור המחשב
             }
         }
 
 
-
-
-        private Button? FindWinningMove()
-        {
-            return FindBestMove(isBlocking: false);
-        }
-
-        private Button? FindBlockingMove()
-        {
-            return FindBestMove(isBlocking: true);
-        }
 
 
         private Button? GetButtonAt(int row, int col)

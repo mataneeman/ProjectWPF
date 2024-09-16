@@ -21,7 +21,7 @@ namespace ProjectWpf.Flappy_Bird
         private double birdYPosition;
         private double birdVelocity;
         private const double gravity = 0.5;
-        private const double jumpStrength = -5;
+        private const double jumpStrength = -7;
         private double currentPipeSpeed;
         private const double initialPipeSpeed = 5;
         private const double speedIncreaseInterval = 10;
@@ -79,8 +79,9 @@ namespace ProjectWpf.Flappy_Bird
             gameOver = false;
             score = 0;
 
-            UpdateUIForGameState();
+            UpdateUIForGameState(); // This will ensure the UI reflects the initial game state
         }
+
 
         private void PipeTimer_Tick(object? sender, EventArgs e)
         {
@@ -88,7 +89,7 @@ namespace ProjectWpf.Flappy_Bird
 
             double pipeX = gameCanvas.ActualWidth;
             double canvasHeight = gameCanvas.ActualHeight;
-            double pipeGap = 150;
+            double pipeGap = 130;
 
             Pipe newPipe = new Pipe(pipeX, canvasHeight, pipeGap, currentPipeSpeed);
             gameCanvas.Children.Add(newPipe.TopPipeImage);
@@ -177,6 +178,38 @@ namespace ProjectWpf.Flappy_Bird
         }
 
 
+        public void ResetGame()
+        {
+            gameCanvas.Children.Clear();
+            pipes.Clear();
+
+            InitializeGame();
+
+            score = 0;
+            UpdateScore();
+
+            isGameRunning = false;
+            gameOver = false;
+
+            UpdateUIForGameState();
+        }
+
+
+        public void StartGame()
+        {
+            if (!isGameRunning && !gameOver)
+            {
+                InitializeGame();
+
+                isGameRunning = true;
+                gameOver = false;
+                gameTimer.Start();
+                pipeTimer.Start();
+
+                UpdateUIForGameState();
+            }
+        }
+
         private void UpdateUIForGameState()
         {
             if (mainWindow is FlappyBirdGame game)
@@ -185,44 +218,25 @@ namespace ProjectWpf.Flappy_Bird
                 {
                     game.StartButton.Visibility = Visibility.Collapsed;
                     game.GameOverOverlay.Visibility = Visibility.Collapsed;
+                    game.ScoreTextBlock.Visibility = Visibility.Visible; 
                 }
                 else if (gameOver)
                 {
-                    game.StartButton.Visibility = Visibility.Collapsed;
-                    game.ScoreTextBlock.Visibility = Visibility.Collapsed;
+                    game.StartButton.Visibility = Visibility.Visible;
                     game.GameOverOverlay.Visibility = Visibility.Visible;
+                    game.ScoreTextBlock.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     game.StartButton.Visibility = Visibility.Visible;
                     game.GameOverOverlay.Visibility = Visibility.Collapsed;
+                    game.ScoreTextBlock.Visibility = Visibility.Collapsed;
                 }
             }
         }
 
-        public void StartGame()
-        {
-            if (!isGameRunning && !gameOver)
-            {
-                InitializeGame();
-                isGameRunning = true;
-                gameOver = false;
-                gameTimer.Start();
-                pipeTimer.Start();
-                UpdateUIForGameState();
-            }
-        }
 
-        public void ResetGame()
-        {
-            gameCanvas.Children.Clear();
-            pipes.Clear();
 
-            isGameRunning = true;
-            gameTimer.Start();
-            pipeTimer.Start();
-            UpdateUIForGameState();
-        }
 
         public void BirdJump()
         {

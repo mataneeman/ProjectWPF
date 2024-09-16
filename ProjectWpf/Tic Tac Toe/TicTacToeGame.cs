@@ -15,6 +15,7 @@ namespace ProjectWpf
         {
             IsHardDifficulty = true;
         }
+
         public void SetDifficultyEasy()
         {
             IsHardDifficulty = false;
@@ -22,17 +23,21 @@ namespace ProjectWpf
 
         public void MarkButton(Button btn, int row, int col)
         {
-            btn.Content = player1Turn ? "X" : "O";
-            btn.IsEnabled = false;
-            gameBoard.UpdateBoardState(row, col, player1Turn);
+            if (btn.IsEnabled)
+            {
+                btn.Content = player1Turn ? "X" : "O";
+                btn.IsEnabled = false;
+                gameBoard.UpdateBoardState(row, col, player1Turn);
+            }
         }
 
         public void ReverseMarkButton(Button btn, int row, int col)
         {
-            btn.Content ="";
+            btn.Content = "";
             btn.IsEnabled = true;
             gameBoard.ReverseBoardState(row, col);
         }
+
         public GameStatus CheckGameStatus()
         {
             int currentPlayer = player1Turn ? 1 : 2;
@@ -72,5 +77,4 @@ namespace ProjectWpf
             player1Turn = !player1Turn;
         }
     }
-
 }

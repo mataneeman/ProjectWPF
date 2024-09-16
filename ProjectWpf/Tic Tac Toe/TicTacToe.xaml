@@ -44,7 +44,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Button Content="Easy" Width="150" Height="50" Margin="10" FontSize="16" Background="White" Foreground="Black" FontWeight="Black" Click="DifficultyButton_Click" Grid.Row="1" Tag="Easy" Cursor="Hand"/>
-            <Button Content="Hard" Width="150" Height="50" Margin="10" FontSize="16" Background="White" Foreground="Black" FontWeight="Black" Click="DifficultyButton_Click" Grid.Row="3" Tag="Hard" Cursor="Hand"/>
+            <Button Content="Hard" Width="150" Height="50" Margin="10" FontSize="16" Background="Gray" Foreground="DarkGray" FontWeight="Black" Click="DifficultyButton_Click" Grid.Row="3" Tag="Hard" Cursor="Hand" IsEnabled="False"/>
         </Grid>
 
 

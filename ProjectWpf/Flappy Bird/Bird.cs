@@ -35,6 +35,6 @@ public class Bird
 
     public void Jump()
     {
-        Velocity = -5; 
+        Velocity = -7; 
     }
 }

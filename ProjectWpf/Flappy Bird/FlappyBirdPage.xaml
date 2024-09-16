@@ -60,7 +60,7 @@
 
                 <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
                     <TextBlock x:Name="FlappyBird" Text="Flappiy Bird" TextWrapping="Wrap" FontSize="36" FontWeight="Bold" Foreground="White"/>
-                    <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Foreground="White" Margin="0,10,0,20" Text=""/>
+                    <TextBlock x:Name="introduction" TextWrapping="Wrap" Padding="0,5,5,5" Foreground="White" Margin="0,10,0,20"><Run Text="Welcome to Flappy Bird!"/><Run/><LineBreak/><Run Text="Get ready to take flight in this fun and addictive game! Help our little bird navigate through a series of pipes by tapping the screen to make it jump. Your goal is simple: stay in the air and avoid the pipes for as long as you can."/><LineBreak/><Run/><LineBreak/><Run Text="How to Play:"/><LineBreak/><Run/><Run Text="Press the Space Bar to make the bird jump."/><LineBreak/><Run Text="Avoid hitting the pipes."/><LineBreak/><Run Text="Earn points for every pipe you successfully pass through."/><LineBreak/><Run Text="Can you beat your high score and master the skies? Tap &quot;Start&quot; to begin your adventure"/></TextBlock>
                     <Button x:Name="PlayGame" Content="Play Game" Padding="5" Background="#E76F51" Foreground="White" BorderBrush="#E76F51" BorderThickness="1" FontSize="16" FontWeight="Bold" Cursor="Hand" Click="PlayGame_Click" />
                 </StackPanel>
             </Grid>
