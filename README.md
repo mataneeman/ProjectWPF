@@ -53,5 +53,5 @@ You can find the source code of the project on GitHub at:
 3. **Run the Project**
    - After successfully building the project, you can run the various applications from Visual Studio or execute the output files located in the output directory.
 
-If you have any additional questions or special requirements, feel free to ask!
+
 
